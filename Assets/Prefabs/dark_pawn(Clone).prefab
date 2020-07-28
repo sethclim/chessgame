@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2178857065297483745}
   - component: {fileID: 5195457721702894537}
   - component: {fileID: 1385656447842131371}
+  - component: {fileID: 5746296931735733150}
   m_Layer: 0
   m_Name: dark_pawn(Clone)
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5746296931735733150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8127079990435119159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f46559995ee5144e94d12d3c8891882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 0

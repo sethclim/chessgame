@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6537568522768375610}
   - component: {fileID: 1695499879105967942}
   - component: {fileID: 2358536623544869938}
+  - component: {fileID: 5463579776451418710}
+  - component: {fileID: 7358199902157315727}
   m_Layer: 0
   m_Name: dark_king(Clone)
   m_TagString: Untagged
@@ -79,3 +81,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5463579776451418710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830509808649098085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537d94279fa44664caaba2a04cac33d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 0
+--- !u!114 &7358199902157315727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830509808649098085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537d94279fa44664caaba2a04cac33d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 1
