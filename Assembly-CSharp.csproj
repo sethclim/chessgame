@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bishop.cs" />
     <Compile Include="Assets\Scripts\Board.cs" />
+    <Compile Include="Assets\Scripts\BoardHighlights.cs" />
     <Compile Include="Assets\Scripts\BoardManager.cs" />
     <Compile Include="Assets\Scripts\ChessMan.cs" />
     <Compile Include="Assets\Scripts\Horse.cs" />

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+    public static BoardManager Instance { get; set; }
+    private bool[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
     private ChessMan selectedChessMan;
 
@@ -22,6 +24,7 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         SpawnAllChessMan();
     }
     private void Update()
@@ -29,9 +32,9 @@ public class BoardManager : MonoBehaviour
         UpdateSelection();
         DrawChessBoard();
 
- 
 
-        if (Input.GetMouseButton(0))
+
+        if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Mouse Clicked");
             if (selectionX >= 0 && selectionY >= 0)
@@ -49,30 +52,51 @@ public class BoardManager : MonoBehaviour
                 }
             }
         }
-
     }
     private void SelectChessMan(int x, int y)
     {
         if (Chessmans[x, y] == null)
         {
-            Debug.Log("Chessmans[x, y] == null in SelectChess", Chessmans[x, y]);
+
             return;
         }
 
         if (Chessmans[x, y].isWhite != isWhiteTurn)
             return;
+
+        allowedMoves = Chessmans[x, y].PossibleMove();
         selectedChessMan = Chessmans[x, y];
-        Debug.Log("SelectChessMan Called", selectedChessMan);
+        BoardHighlights.Instance.HighLightAllowedMoves(allowedMoves);
+
     }
     private void MoveChessMan(int x, int y)
     {
-        if (selectedChessMan.PossibleMove(x, y))
+        if (allowedMoves[x, y])
         {
+            ChessMan c = Chessmans[x, y];
+
+            //Capture a peice
+
+
+            if (c != null && c.isWhite != isWhiteTurn)
+            {
+                activeChessMan.Remove(c.gameObject);
+                Destroy(c.gameObject);
+                //if it is the king
+                if (c.GetType() == typeof(King))
+                {
+                    //End Game
+                    return;
+                }
+            }
             Chessmans[selectedChessMan.CurrentX, selectedChessMan.CurrentY] = null;
             selectedChessMan.transform.position = GetTileCenter(x, y);
+            selectedChessMan.SetPosition(x, y);
             Chessmans[x, y] = selectedChessMan;
+            isWhiteTurn = !isWhiteTurn;
         }
 
+        BoardHighlights.Instance.HidehighLights();
         selectedChessMan = null;
     }
 
@@ -133,9 +157,9 @@ public class BoardManager : MonoBehaviour
 
         //Spawn White Team
         //King
-        SpawnChessMan(6, 3, 7);
+        SpawnChessMan(6, 4, 7);
         //Queen
-        SpawnChessMan(7, 4, 7);
+        SpawnChessMan(7, 3, 7);
         //Rooks
         SpawnChessMan(8, 0, 7);
         SpawnChessMan(8, 7, 7);
