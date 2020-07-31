@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 630446183}
   - component: {fileID: 630446182}
+  - component: {fileID: 630446184}
   m_Layer: 0
   m_Name: Chess_Board
   m_TagString: Untagged
@@ -150,17 +151,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f91ebc452e1fa4aa74bd4cf2223dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWhiteTurn: 1
   chessmanPrefabs:
   - {fileID: 2042635114559734197, guid: 53d7a8519344581458c64ecaa7c4b0a2, type: 3}
   - {fileID: 4493656670169133380, guid: bb6105b474d6514448659092346aed20, type: 3}
-  - {fileID: 4878448064098056606, guid: 407cb03f7997ce64aa6ae5b37b94e646, type: 3}
   - {fileID: 3143003647439281927, guid: ce02405a206ecc24698a9846eb066566, type: 3}
+  - {fileID: 4878448064098056606, guid: 407cb03f7997ce64aa6ae5b37b94e646, type: 3}
   - {fileID: 803401865260571855, guid: b66e3ae1b72c48545b0a5e035ae0b43b, type: 3}
   - {fileID: 1236225290418940363, guid: a59610c7bfd86224986e2c5b2e70bc96, type: 3}
   - {fileID: 5830509808649098085, guid: a8fc4cc216ca8b443b21872baa8cf826, type: 3}
   - {fileID: 1747047394315173058, guid: 3a65efab6dafeec4282ab3153b93ee40, type: 3}
-  - {fileID: 9216930688503620686, guid: deaae2ec8d7ff7e43be3c456ba789a7d, type: 3}
   - {fileID: 8832226166862623750, guid: 89179dce476b3074797849978ec8135b, type: 3}
+  - {fileID: 9216930688503620686, guid: deaae2ec8d7ff7e43be3c456ba789a7d, type: 3}
   - {fileID: 6301714793751748118, guid: 3bd2db42b3949a943bade41e1a22d997, type: 3}
   - {fileID: 8127079990435119159, guid: 65909553a44fb5f4a8a909ef76bfbb4f, type: 3}
 --- !u!4 &630446183
@@ -178,6 +180,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &630446184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630446181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337d6cf9c4bb2fa43940141b40cab38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightPrefab: {fileID: 5385699852683410973, guid: eca35d47e6e737845abe8c80d8b8bf83,
+    type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

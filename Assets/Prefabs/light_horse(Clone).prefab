@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6326266831828999359}
   - component: {fileID: 6346225651914929458}
   - component: {fileID: 4812902116585145659}
+  - component: {fileID: 4460976992358018760}
   m_Layer: 0
   m_Name: light_horse(Clone)
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 447803171340677530, guid: 60840e7548bf9f049a9e3b336c2cbfb2, type: 3}
+  - {fileID: 2100000, guid: 62a98b8b34f5f59478fc0e4c617e2bc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4460976992358018760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803401865260571855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3fc9690f5a66b345b26e9f4f148e50b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 1

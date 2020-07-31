@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4399865888939995439}
   - component: {fileID: 532069379673500938}
   - component: {fileID: 7327731611207891331}
+  - component: {fileID: 8742713059112745628}
   m_Layer: 0
   m_Name: dark_queen(Clone)
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2256117678555162475, guid: 487dae2e673eef746bcbea2e8352bfe9, type: 3}
+  - {fileID: 2100000, guid: 1befa46d08a31c14086df089ab86534f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8742713059112745628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747047394315173058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d90500e2c7c4c44ebfe408edfd86b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 46341315394890892}
   - component: {fileID: 1254677937315460439}
   - component: {fileID: 2066391970850389657}
+  - component: {fileID: 904515553314339514}
   m_Layer: 0
   m_Name: light_queen(Clone)
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2474479878890135666, guid: 2a14fa91313a64b41af2d439b6a991cc, type: 3}
+  - {fileID: 2100000, guid: 62a98b8b34f5f59478fc0e4c617e2bc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &904515553314339514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4493656670169133380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d90500e2c7c4c44ebfe408edfd86b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 1

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7165225355439607066}
   - component: {fileID: 3833851345073779526}
   - component: {fileID: 4955685992587958008}
+  - component: {fileID: -426770586902546088}
   m_Layer: 0
   m_Name: light_king(Clone)
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2884237390737663667, guid: 164766666366b214b869a268d955a2dd, type: 3}
+  - {fileID: 2100000, guid: 62a98b8b34f5f59478fc0e4c617e2bc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-426770586902546088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042635114559734197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537d94279fa44664caaba2a04cac33d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 1
