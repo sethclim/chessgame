@@ -36,14 +36,14 @@ public class BoardManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Mouse Clicked");
+          
             if (selectionX >= 0 && selectionY >= 0)
             {
                 if (selectedChessMan == null)
                 {
                     //select the chessman
                     SelectChessMan(selectionX, selectionY);
-                    Debug.Log("SelectedChessMan == Null");
+                
                 }
                 else
                 {
@@ -76,8 +76,6 @@ public class BoardManager : MonoBehaviour
             ChessMan c = Chessmans[x, y];
 
             //Capture a peice
-
-
             if (c != null && c.isWhite != isWhiteTurn)
             {
                 activeChessMan.Remove(c.gameObject);
@@ -155,7 +153,7 @@ public class BoardManager : MonoBehaviour
             SpawnChessMan(5, xTile, 1);
         }
 
-        //Spawn White Team
+        //Spawn Black Team
         //King
         SpawnChessMan(6, 4, 7);
         //Queen
