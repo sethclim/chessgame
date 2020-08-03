@@ -6,6 +6,7 @@ public abstract class ChessMan : MonoBehaviour
 {
     public int CurrentX { get; set; }
     public int CurrentY { get; set; }
+    public virtual float CurrentZ { get; set; }
 
     public bool isWhite;
 

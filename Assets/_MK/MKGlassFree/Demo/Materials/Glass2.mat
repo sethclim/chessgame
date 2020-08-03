@@ -97,8 +97,8 @@ Material:
     - _Parallax: 0.02
     - _ReflectIntensity: 0.25
     - _RenderMode: 0
-    - _RimIntensity: 0.116
-    - _RimSize: 0.41
+    - _RimIntensity: 0.25
+    - _RimSize: 0.15
     - _ShadowIntensity: 0.1
     - _Shininess: 0.115
     - _SmoothnessTextureChannel: 0

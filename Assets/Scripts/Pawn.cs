@@ -1,10 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Pawn : ChessMan
 {
-   public override bool [,] PossibleMove()
+    public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
+
+    public Pawn():base()
+    {
+        CurrentZ = 0.3f;
+    }
+
+    public override bool [,] PossibleMove()
     {
         bool[,] r = new bool[8, 8];
         ChessMan c, c2;

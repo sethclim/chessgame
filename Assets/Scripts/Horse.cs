@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Horse : ChessMan
 {
- 
+    public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
+
+    public Horse() : base()
+    {
+        CurrentZ = 0.3f;
+    }
+
     public override bool[,] PossibleMove()
     {
         bool[,] r = new bool[8, 8];

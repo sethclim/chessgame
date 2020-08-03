@@ -87,8 +87,10 @@ public class BoardManager : MonoBehaviour
                     return;
                 }
             }
+
+            
             Chessmans[selectedChessMan.CurrentX, selectedChessMan.CurrentY] = null;
-            selectedChessMan.transform.position = GetTileCenter(x, y);
+            selectedChessMan.transform.position = GetTileCenter(x, y, selectedChessMan.CurrentZ);
             selectedChessMan.SetPosition(x, y);
             Chessmans[x, y] = selectedChessMan;
             isWhiteTurn = !isWhiteTurn;
@@ -116,10 +118,10 @@ public class BoardManager : MonoBehaviour
             selectionY = -1;
         }
     }
-    private void SpawnChessMan(int index, int x, int y)
+    private void SpawnChessMan(int index, int x, int y, float z)
     {
 
-        GameObject go = Instantiate(chessmanPrefabs[index], GetTileCenter(x, y), orientation) as GameObject;
+        GameObject go = Instantiate(chessmanPrefabs[index], GetTileCenter(x, y , z), orientation) as GameObject;
         go.transform.SetParent(transform);
         Chessmans[x, y] = go.GetComponent<ChessMan>();
         Chessmans[x, y].SetPosition(x, y);
@@ -134,52 +136,53 @@ public class BoardManager : MonoBehaviour
 
         //Spawn White Team
         //King
-        SpawnChessMan(0, 3, 0);
+        SpawnChessMan(0, 3, 0, 0.42f);
         //Queen
-        SpawnChessMan(1, 4, 0);
+        SpawnChessMan(1, 4, 0, 0.42f);
         //Rooks
-        SpawnChessMan(2, 0, 0);
-        SpawnChessMan(2, 7, 0);
+        SpawnChessMan(2, 0, 0, 0.42f);
+        SpawnChessMan(2, 7, 0, 0.42f);
         //Bishops
-        SpawnChessMan(3, 2, 0);
-        SpawnChessMan(3, 5, 0);
+        SpawnChessMan(3, 2, 0, 0.42f);
+        SpawnChessMan(3, 5, 0, 0.42f);
         //Knights
-        SpawnChessMan(4, 1, 0);
-        SpawnChessMan(4, 6, 0);
+        SpawnChessMan(4, 1, 0, 0.3f);
+        SpawnChessMan(4, 6, 0, 0.3f);
 
         //Pawns
         for (int xTile = 0; xTile < 8; xTile++)
         {
-            SpawnChessMan(5, xTile, 1);
+            SpawnChessMan(5, xTile, 1, 0.3f);
         }
 
         //Spawn Black Team
         //King
-        SpawnChessMan(6, 4, 7);
+        SpawnChessMan(6, 4, 7, 0.42f);
         //Queen
-        SpawnChessMan(7, 3, 7);
+        SpawnChessMan(7, 3, 7, 0.42f);
         //Rooks
-        SpawnChessMan(8, 0, 7);
-        SpawnChessMan(8, 7, 7);
+        SpawnChessMan(8, 0, 7, 0.42f);
+        SpawnChessMan(8, 7, 7, 0.42f);
         //Bishops
-        SpawnChessMan(9, 2, 7);
-        SpawnChessMan(9, 5, 7);
+        SpawnChessMan(9, 2, 7, 0.42f);
+        SpawnChessMan(9, 5, 7, 0.42f);
         //Knights
-        SpawnChessMan(10, 1, 7);
-        SpawnChessMan(10, 6, 7);
+        SpawnChessMan(10, 1, 7, 0.3f);
+        SpawnChessMan(10, 6, 7, 0.3f);
 
         //Pawns
         for (int xTile = 0; xTile < 8; xTile++)
         {
-            SpawnChessMan(11, xTile, 6);
+            SpawnChessMan(11, xTile, 6, 0.3f);
         }
     }
 
-    private Vector3 GetTileCenter(int x, int y)
+    private Vector3 GetTileCenter(int x, int y, float z)
     {
         Vector3 origin = Vector3.zero;
         origin.x += (tile_Size * x) + tile_OffSet;
         origin.z += (tile_Size * y) + tile_OffSet;
+        origin.y += z;
         return origin;
     }
     private void DrawChessBoard()

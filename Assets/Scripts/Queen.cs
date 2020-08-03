@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Queen : ChessMan
 {
+
+    public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
+
+    public Queen() : base()
+    {
+        CurrentZ = 0.42f;
+    }
     public override bool[,] PossibleMove()
     {
         bool[,] r = new bool[8, 8];
