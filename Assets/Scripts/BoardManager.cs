@@ -9,7 +9,8 @@ public class BoardManager : MonoBehaviour
     private bool[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
     private ChessMan selectedChessMan;
-
+    [SerializeField]
+    private CamSwitcher camSwitcherObj;
     private const float tile_Size = 1.0f;
     private const float tile_OffSet = 0.5f;
     private int selectionX = -1;
@@ -17,7 +18,9 @@ public class BoardManager : MonoBehaviour
 
     private Quaternion orientation = Quaternion.Euler(-90, -90, 0);
 
-    public bool isWhiteTurn = true;
+    private bool isWhiteTurn = true;
+
+    
 
     public List<GameObject> chessmanPrefabs;
     private List<GameObject> activeChessMan;
@@ -25,6 +28,7 @@ public class BoardManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        camSwitcherObj.SetCameras();
         SpawnAllChessMan();
     }
     private void Update()
@@ -47,7 +51,7 @@ public class BoardManager : MonoBehaviour
                 }
                 else
                 {
-                    //move the chess man
+                    //move the chessman
                     MoveChessMan(selectionX, selectionY);
                 }
             }
@@ -94,6 +98,7 @@ public class BoardManager : MonoBehaviour
             selectedChessMan.SetPosition(x, y);
             Chessmans[x, y] = selectedChessMan;
             isWhiteTurn = !isWhiteTurn;
+            camSwitcherObj.SwitchCam(isWhiteTurn);
         }
 
         BoardHighlights.Instance.HidehighLights();
@@ -217,8 +222,5 @@ public class BoardManager : MonoBehaviour
                 Vector3.forward * selectionY + Vector3.right * (selectionX + 1));
 
         }
-
-
-
     }
 }

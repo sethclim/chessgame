@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Glass2
-  m_Shader: {fileID: 4800000, guid: 7f205347e1ebaf14c97b28211ae55dbe, type: 3}
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _MK_BUMP_MAP _MK_LIGHTMODEL_BLINN_PHONG _MK_REFLECTIVE_DEFAULT
     _MK_REFLECTIVE_FRESNEL _MK_RIM _MK_SPECULAR_MAP _USEFRESNEL_ON _USEREFLECTION_ON
     _USERIM_ON
@@ -21,6 +21,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: f73b5a3f565dfa4489c8f36959e06cdb, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -70,13 +74,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - PixelSnap: 0
     - _AlbedoMap: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DetailTint: 0.25
-    - _Distortion: 0.268
+    - _Distortion: 0
     - _DstBlend: 0
+    - _EnableExternalAlpha: 0
     - _FresnelFactor: 1.4
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -88,7 +94,7 @@ Material:
     - _MKEditorShowReflectionBehavior: 1
     - _MKEditorShowRenderBehavior: 1
     - _MKEditorShowRimBehavior: 1
-    - _MKEditorShowSpecularBehavior: 0
+    - _MKEditorShowSpecularBehavior: 1
     - _MKEditorShowTranslucentBehavior: 0
     - _MainTint: 2
     - _Metallic: 0
@@ -97,13 +103,13 @@ Material:
     - _Parallax: 0.02
     - _ReflectIntensity: 0.25
     - _RenderMode: 0
-    - _RimIntensity: 0.25
-    - _RimSize: 0.15
+    - _RimIntensity: 0.45
+    - _RimSize: 0
     - _ShadowIntensity: 0.1
-    - _Shininess: 0.115
+    - _Shininess: 0.61
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularIntensity: 0.5
+    - _SpecularIntensity: 0
     - _SrcBlend: 1
     - _TranslucentIntensity: 0.5
     - _TranslucentShininess: 0.275
@@ -118,7 +124,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _TranslucentColor: {r: 1, g: 1, b: 1, a: 0.5}

@@ -1136,9 +1136,11 @@
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\BoardHighlights.cs" />
     <Compile Include="Assets\Scripts\BoardManager.cs" />
+    <Compile Include="Assets\Scripts\CamSwitcher.cs" />
     <Compile Include="Assets\Scripts\ChessMan.cs" />
     <Compile Include="Assets\Scripts\Horse.cs" />
     <Compile Include="Assets\Scripts\King.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Pawn.cs" />
     <Compile Include="Assets\Scripts\Queen.cs" />
     <Compile Include="Assets\Scripts\Rook.cs" />
