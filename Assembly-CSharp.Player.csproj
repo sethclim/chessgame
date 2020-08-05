@@ -1132,18 +1132,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Bishop.cs" />
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\BoardHighlights.cs" />
     <Compile Include="Assets\Scripts\BoardManager.cs" />
     <Compile Include="Assets\Scripts\CamSwitcher.cs" />
-    <Compile Include="Assets\Scripts\ChessMan.cs" />
-    <Compile Include="Assets\Scripts\Horse.cs" />
-    <Compile Include="Assets\Scripts\King.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\Pawn.cs" />
-    <Compile Include="Assets\Scripts\Queen.cs" />
-    <Compile Include="Assets\Scripts\Rook.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Bishop.cs" />
+    <Compile Include="Assets\Scripts\Pieces\ChessMan.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Horse.cs" />
+    <Compile Include="Assets\Scripts\Pieces\King.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Pawn.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Queen.cs" />
+    <Compile Include="Assets\Scripts\Pieces\Rook.cs" />
     <Compile Include="Assets\_MK\MKGlassFree\MKGlassFreeMaterialHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

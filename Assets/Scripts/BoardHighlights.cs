@@ -53,7 +53,7 @@ public class BoardHighlights : MonoBehaviour
                 {
                     GameObject go = GetHighlightObject();
                     go.SetActive(true);
-                    go.transform.position = new Vector3(i + 0.5f, 0.03f, j + 0.5f);
+                    go.transform.position = new Vector3(i + 0.5f, 0f, j + 0.5f);
                 }
             }
 
@@ -63,7 +63,7 @@ public class BoardHighlights : MonoBehaviour
                 {
                     GameObject go = GetAttackHighlightObject();
                     go.SetActive(true);
-                    go.transform.position = new Vector3(i + 0.5f, 0.03f, j + 0.5f);
+                    go.transform.position = new Vector3(i + 0.5f, 0f, j + 0.5f);
                 }
             }
         }

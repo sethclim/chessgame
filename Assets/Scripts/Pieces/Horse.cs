@@ -8,7 +8,7 @@ public class Horse : ChessMan
 
     public Horse() : base()
     {
-        CurrentZ = 0.3f;
+        CurrentZ = 0.1f;
     }
 
     public override MoveType[,] PossibleMove()

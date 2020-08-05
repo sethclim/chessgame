@@ -75,8 +75,6 @@ public class Board : MonoBehaviour
 
             }
         }
-
-
     }
 
     private void ShowCurrentSquare(int xPos, int yPos)
@@ -86,7 +84,7 @@ public class Board : MonoBehaviour
         if (xPos >= 0 && yPos >= 0)
         {
             selectTile.SetActive(true);
-            selectTile.transform.position = new Vector3(xPos + 0.5f, 0.03f, yPos + 0.5f);
+            selectTile.transform.position = new Vector3(xPos + 0.5f, 0f, yPos + 0.5f);
 
             Debug.Log(BoardManager.Instance.SelectionX);
             Debug.Log(BoardManager.Instance.SelectionY);

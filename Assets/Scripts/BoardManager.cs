@@ -122,13 +122,13 @@ public class BoardManager : MonoBehaviour
         SpawnChessMan(1, 4, 0, 0.42f);
         //Rooks
         SpawnChessMan(2, 0, 0, 0.42f);
-        SpawnChessMan(2, 7, 0, 0.42f);
+        SpawnChessMan(2, 7, 0, 0.32f);
         //Bishops
         SpawnChessMan(3, 2, 0, 0.42f);
         SpawnChessMan(3, 5, 0, 0.42f);
         //Knights
-        SpawnChessMan(4, 1, 0, 0.3f);
-        SpawnChessMan(4, 6, 0, 0.3f);
+        SpawnChessMan(4, 1, 0, 0.1f);
+        SpawnChessMan(4, 6, 0, 0.1f);
 
         //Pawns
         for (int xTile = 0; xTile < 8; xTile++)
@@ -148,8 +148,8 @@ public class BoardManager : MonoBehaviour
         SpawnChessMan(9, 2, 7, 0.42f);
         SpawnChessMan(9, 5, 7, 0.42f);
         //Knights
-        SpawnChessMan(10, 1, 7, 0.3f);
-        SpawnChessMan(10, 6, 7, 0.3f);
+        SpawnChessMan(10, 1, 7, 0.1f);
+        SpawnChessMan(10, 6, 7, 0.1f);
 
         //Pawns
         for (int xTile = 0; xTile < 8; xTile++)
