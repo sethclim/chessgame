@@ -7,6 +7,7 @@ public class BoardHighlights : MonoBehaviour
     public static BoardHighlights Instance { set; get; }
 
     public GameObject highlightPrefab;
+    public GameObject attackhighlightPrefab;
     private List<GameObject> highlights;
 
 
@@ -29,15 +30,38 @@ public class BoardHighlights : MonoBehaviour
         return go;
     }
 
-    public void HighLightAllowedMoves(bool[,] moves)
+    private GameObject GetAttackHighlightObject()
+    {
+
+        GameObject go = highlights.Find(g => !g.activeSelf);
+
+        if (go == null)
+        {
+            go = Instantiate(attackhighlightPrefab);
+            highlights.Add(go);
+        }
+        return go;
+    }
+
+    public void HighLightAllowedMoves(ChessMan.MoveType[,] moves)
     {
         for(int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
             {
-                if(moves[i, j])
+                if(moves[i, j] == ChessMan.MoveType.canMove)
                 {
                     GameObject go = GetHighlightObject();
+                    go.SetActive(true);
+                    go.transform.position = new Vector3(i + 0.5f, 0.03f, j + 0.5f);
+                }
+            }
+
+            for (int j = 0; j < 8; j++)
+            {
+                if (moves[i, j] == ChessMan.MoveType.attack)
+                {
+                    GameObject go = GetAttackHighlightObject();
                     go.SetActive(true);
                     go.transform.position = new Vector3(i + 0.5f, 0.03f, j + 0.5f);
                 }

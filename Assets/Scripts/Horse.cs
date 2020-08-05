@@ -11,9 +11,9 @@ public class Horse : ChessMan
         CurrentZ = 0.3f;
     }
 
-    public override bool[,] PossibleMove()
+    public override MoveType[,] PossibleMove()
     {
-        bool[,] r = new bool[8, 8];
+        MoveType[,] r = new MoveType[8, 8];
 
         //up left
         HorseMove(CurrentX - 1, CurrentY + 2, ref r);
@@ -42,17 +42,17 @@ public class Horse : ChessMan
 
     }
 
-    public void HorseMove(int x, int y, ref bool[,] r)
+    public void HorseMove(int x, int y, ref MoveType[,] r)
     {
         ChessMan c;
         if(x >= 0 && x < 8 && y >= 0 && y < 8)
         {
             c = BoardManager.Instance.Chessmans[x, y];
             if (c == null)
-                r[x, y] = true;
+                r[x, y] = MoveType.canMove;
             else if (isWhite != c.isWhite)
             {
-                r[x, y] = true;
+                r[x, y] = MoveType.attack;
             }
         }
     }

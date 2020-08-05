@@ -12,9 +12,9 @@ public class Pawn : ChessMan
         CurrentZ = 0.3f;
     }
 
-    public override bool [,] PossibleMove()
+    public override MoveType [,] PossibleMove()
     {
-        bool[,] r = new bool[8, 8];
+        MoveType[,] r = new MoveType[8, 8];
         ChessMan c, c2;
 
         //White team move
@@ -25,21 +25,21 @@ public class Pawn : ChessMan
             {
                 c = BoardManager.Instance.Chessmans[CurrentX - 1, CurrentY + 1];
                 if (c != null && !c.isWhite)
-                    r[CurrentX - 1, CurrentY + 1] = true;
+                    r[CurrentX - 1, CurrentY + 1] = MoveType.attack;
             }
             //Diagonal Right
             if (CurrentX != 7 && CurrentY != 7)
             {
                 c = BoardManager.Instance.Chessmans[CurrentX + 1, CurrentY + 1];
                 if (c != null && !c.isWhite)
-                    r[CurrentX + 1, CurrentY + 1] = true;
+                    r[CurrentX + 1, CurrentY + 1] = MoveType.attack;
             }
             //Middle
             if(CurrentY != 7)
             {
                 c = BoardManager.Instance.Chessmans[CurrentX, CurrentY + 1];
                 if (c == null)
-                    r[CurrentX, CurrentY + 1] = true;
+                    r[CurrentX, CurrentY + 1] = MoveType.canMove;
             }
             //Middle on first move
             if(CurrentY == 1)
@@ -47,7 +47,7 @@ public class Pawn : ChessMan
                 c = BoardManager.Instance.Chessmans[CurrentX, CurrentY + 1];
                 c2 = BoardManager.Instance.Chessmans[CurrentX, CurrentY + 2];
                 if (c == null && c2 == null)
-                    r[CurrentX, CurrentY + 2] = true;
+                    r[CurrentX, CurrentY + 2] = MoveType.canMove;
             }
         }
         else
@@ -58,21 +58,21 @@ public class Pawn : ChessMan
             {
                 c = BoardManager.Instance.Chessmans[CurrentX - 1, CurrentY - 1];
                 if (c != null && c.isWhite)
-                    r[CurrentX - 1, CurrentY - 1] = true;
+                    r[CurrentX - 1, CurrentY - 1] = MoveType.attack;
             }
             //Diagonal Right
             if (CurrentX != 7 && CurrentY != 0)
             {
                 c = BoardManager.Instance.Chessmans[CurrentX + 1, CurrentY - 1];
                 if (c != null && c.isWhite)
-                    r[CurrentX + 1, CurrentY - 1] = true;
+                    r[CurrentX + 1, CurrentY - 1] = MoveType.attack;
             }
             //Middle
             if (CurrentY != 0)
             {
                 c = BoardManager.Instance.Chessmans[CurrentX, CurrentY - 1];
                 if (c == null)
-                    r[CurrentX, CurrentY - 1] = true;
+                    r[CurrentX, CurrentY - 1] = MoveType.canMove;
             }
             //Middle on first move
             if (CurrentY == 6)
@@ -80,7 +80,7 @@ public class Pawn : ChessMan
                 c = BoardManager.Instance.Chessmans[CurrentX, CurrentY - 1];
                 c2 = BoardManager.Instance.Chessmans[CurrentX, CurrentY - 2];
                 if (c == null && c2 == null)
-                    r[CurrentX, CurrentY - 2] = true;
+                    r[CurrentX, CurrentY - 2] = MoveType.canMove;
             }
         }
 

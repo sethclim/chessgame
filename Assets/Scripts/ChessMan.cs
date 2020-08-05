@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class ChessMan : MonoBehaviour
 {
+    public enum MoveType {noMove, canMove, attack}
     public int CurrentX { get; set; }
     public int CurrentY { get; set; }
     public virtual float CurrentZ { get; set; }
@@ -16,8 +17,8 @@ public abstract class ChessMan : MonoBehaviour
         CurrentY = y;
     }
 
-    public virtual bool[,] PossibleMove()
+    public virtual MoveType[,] PossibleMove()
     {
-        return new bool [8,8] ;
+        return new MoveType[8,8];
     }
 }

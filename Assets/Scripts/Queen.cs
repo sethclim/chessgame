@@ -11,9 +11,9 @@ public class Queen : ChessMan
     {
         CurrentZ = 0.42f;
     }
-    public override bool[,] PossibleMove()
+    public override MoveType[,] PossibleMove()
     {
-        bool[,] r = new bool[8, 8];
+        MoveType[,] r = new MoveType[8, 8];
         ChessMan c;
 
         int i, j;
@@ -32,7 +32,7 @@ public class Queen : ChessMan
             c = BoardManager.Instance.Chessmans[i, CurrentY];
             if (c == null)
             {
-                r[i, CurrentY] = true;
+                r[i, CurrentY] = MoveType.canMove;
                 continue;
 
             }
@@ -40,7 +40,7 @@ public class Queen : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
-                    r[i, CurrentY] = true;
+                    r[i, CurrentY] = MoveType.attack;
                     break;
                 }
                 else
@@ -65,15 +65,15 @@ public class Queen : ChessMan
             c = BoardManager.Instance.Chessmans[i, CurrentY];
             if (c == null)
             {
-                r[i, CurrentY] = true;
-                break;
+                r[i, CurrentY] = MoveType.canMove;
+               
 
             }
             else
             {
                 if (c.isWhite != isWhite)
                 {
-                    r[i, CurrentY] = true;
+                    r[i, CurrentY] = MoveType.attack;
                     break;
                 }
                 else
@@ -100,7 +100,7 @@ public class Queen : ChessMan
             c = BoardManager.Instance.Chessmans[CurrentX, j];
             if (c == null)
             {
-                r[CurrentX, j] = true;
+                r[CurrentX, j] = MoveType.canMove;
                 continue;
 
             }
@@ -108,7 +108,7 @@ public class Queen : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
-                    r[CurrentX, j] = true;
+                    r[CurrentX, j] = MoveType.attack;
                     break;
                 }
                 else
@@ -134,7 +134,7 @@ public class Queen : ChessMan
             c = BoardManager.Instance.Chessmans[CurrentX, j];
             if (c == null)
             {
-                r[CurrentX, j] = true;
+                r[CurrentX, j] = MoveType.canMove;
                 continue;
 
             }
@@ -142,7 +142,7 @@ public class Queen : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
-                    r[CurrentX, j] = true;
+                    r[CurrentX, j] = MoveType.attack;
                     break;
                 }
                 else
@@ -169,7 +169,7 @@ public class Queen : ChessMan
             c = BoardManager.Instance.Chessmans[i, j];
             if (c == null)
             {
-                r[i, j] = true;
+                r[i, j] = MoveType.canMove;
           
 
             }
@@ -177,7 +177,7 @@ public class Queen : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
-                    r[i, j] = true;
+                    r[i, j] = MoveType.attack;
                     break;
                 }
                 else
@@ -204,14 +204,14 @@ public class Queen : ChessMan
             c = BoardManager.Instance.Chessmans[i, j];
             if (c == null)
             {
-                r[i, j] = true;
+                r[i, j] = MoveType.canMove;
                             
             }
             else
             {
                 if (c.isWhite != isWhite)
                 {
-                    r[i, j] = true;
+                    r[i, j] = MoveType.attack;
                     break;
                 }
                 else
@@ -239,7 +239,7 @@ public class Queen : ChessMan
             c = BoardManager.Instance.Chessmans[i, j];
             if (c == null)
             {
-                r[i, j] = true;
+                r[i, j] = MoveType.canMove;
                
 
             }
@@ -247,7 +247,7 @@ public class Queen : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
-                    r[i, j] = true;
+                    r[i, j] = MoveType.attack;
                     break;
                 }
                 else
@@ -274,14 +274,14 @@ public class Queen : ChessMan
             c = BoardManager.Instance.Chessmans[i, j];
             if (c == null)
             {
-                r[i, j] = true;
+                r[i, j] = MoveType.canMove;
         
             }
             else
             {
                 if (c.isWhite != isWhite)
                 {
-                    r[i, j] = true;
+                    r[i, j] = MoveType.attack;
                     break;
                 }
                 else
