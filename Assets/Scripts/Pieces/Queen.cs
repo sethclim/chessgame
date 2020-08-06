@@ -6,10 +6,12 @@ public class Queen : ChessMan
 {
 
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
+    
 
     public Queen() : base()
     {
         CurrentZ = 0.42f;
+        Name = PieceType.queen;
     }
     public override MoveType[,] PossibleMove()
     {

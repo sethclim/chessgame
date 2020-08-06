@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class ChessMan : MonoBehaviour
 {
     public enum MoveType {noMove, canMove, attack}
+    public enum PieceType { pawn, queen, king, bishop, rook, knight }
+    public PieceType Name { get; set; }
     public int CurrentX { get; set; }
     public int CurrentY { get; set; }
     public virtual float CurrentZ { get; set; }
@@ -21,4 +23,6 @@ public abstract class ChessMan : MonoBehaviour
     {
         return new MoveType[8,8];
     }
+
+   
 }

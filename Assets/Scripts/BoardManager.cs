@@ -21,6 +21,8 @@ public class BoardManager : MonoBehaviour
     private Quaternion orientation = Quaternion.Euler(-90, -90, 0);
 
     private bool isWhiteTurn = true;
+
+    public bool IsWhiteTurn { get { return isWhiteTurn; } }
     public bool selectionChanged = false;
 
     public List<GameObject> chessmanPrefabs;
