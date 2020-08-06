@@ -27,7 +27,7 @@ public class BoardManager : MonoBehaviour
 
     public List<GameObject> chessmanPrefabs;
     private List<GameObject> activeChessMan;
-
+    public List<GameObject> ActiveChessMan { get { return activeChessMan; }}
     public Board currentBoard;
 
     private void Start()
