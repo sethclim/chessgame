@@ -445,7 +445,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 26320000
       m_LastClickedID: 0
       m_ExpandedIDs: 4cfbffff
       m_RenameOverlay:
@@ -651,19 +651,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scripts/Pieces
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scripts/Pieces
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\devan\Documents\chessgame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 110}
-    m_SelectedIDs: ec340000
-    m_LastClickedID: 13548
+    m_SelectedIDs: 22350000
+    m_LastClickedID: 13602
     m_ExpandedIDs: 00000000e0340000e2340000e4340000e6340000e8340000ea340000ec34000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0

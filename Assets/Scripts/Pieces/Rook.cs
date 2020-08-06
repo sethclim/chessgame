@@ -9,7 +9,8 @@ public class Rook : ChessMan
 
     public Rook() : base()
     {
-        CurrentZ = 0.42f;                                                                      // Might have to change later
+        CurrentZ = 0.42f;                                                                               // Might have to change later
+        Name = PieceType.rook;
     }
     public override MoveType[,] PossibleMove()
     {

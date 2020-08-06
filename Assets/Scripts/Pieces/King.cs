@@ -10,6 +10,7 @@ public class King : ChessMan
     public King() : base()
     {
         CurrentZ = 0.42f;
+        Name = PieceType.king;
     }
 
     public override MoveType[,] PossibleMove()
