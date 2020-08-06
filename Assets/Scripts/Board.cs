@@ -62,7 +62,7 @@ public class Board : MonoBehaviour
     private void DrawChessBoard()
     {
         Vector3 widthline = Vector3.right * 8;
-        Vector3 hieghtline = Vector3.forward * 8;
+        Vector3 heightline = Vector3.forward * 8;
 
         for (int i = 0; i <= 8; i++)
         {
@@ -71,7 +71,7 @@ public class Board : MonoBehaviour
             for (int j = 0; j <= 8; j++)
             {
                 start = Vector3.right * j;
-                Debug.DrawLine(start, start + hieghtline);
+                Debug.DrawLine(start, start + heightline);
 
             }
         }

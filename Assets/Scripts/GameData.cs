@@ -30,7 +30,7 @@ public class GameData
     public GameData(BoardManager boardManager)
     {
         isWhiteTurn = boardManager.IsWhiteTurn;
-        chessManToSave = boardManager.act
+        chessManToSave = boardManager.act;
 
 
     }
