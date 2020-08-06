@@ -92,6 +92,90 @@ public class King : ChessMan
             }
         }
 
+        // Up-Right
+        i = CurrentX;
+        j = CurrentY;
+
+        i++;
+        j++;
+
+        if (i < 8 && j < 8)
+        {
+            c = BoardManager.Instance.Chessmans[i, j];
+
+            if (c == null)
+            {
+                r[i, j] = MoveType.canMove;
+            }
+            else if (c.isWhite != isWhite)
+            {
+                r[i, j] = MoveType.attack;
+            }
+        }
+
+        // Up-Left
+        i = CurrentX;
+        j = CurrentY;
+
+        i++;
+        j--;
+
+        if (i < 8 && j >= 0)
+        {
+            c = BoardManager.Instance.Chessmans[i, j];
+
+            if (c == null)
+            {
+                r[i, j] = MoveType.canMove;
+            }
+            else if (c.isWhite != isWhite)
+            {
+                r[i, j] = MoveType.attack;
+            }
+        }
+
+        // Down-Left
+        i = CurrentX;
+        j = CurrentY;
+
+        i--;
+        j--;
+
+        if (i >= 0 && j >= 0)
+        {
+            c = BoardManager.Instance.Chessmans[i, j];
+
+            if (c == null)
+            {
+                r[i, j] = MoveType.canMove;
+            }
+            else if (c.isWhite != isWhite)
+            {
+                r[i, j] = MoveType.attack;
+            }
+        }
+
+        // Down-Right
+        i = CurrentX;
+        j = CurrentY;
+
+        i--;
+        j++;
+
+        if (i >= 0 && j < 8)
+        {
+            c = BoardManager.Instance.Chessmans[i, j];
+
+            if (c == null)
+            {
+                r[i, j] = MoveType.canMove;
+            }
+            else if (c.isWhite != isWhite)
+            {
+                r[i, j] = MoveType.attack;
+            }
+        }
+
         return r;
 
     }
