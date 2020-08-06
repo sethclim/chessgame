@@ -14,15 +14,14 @@ public class GameData
     {
     }
 
-<<<<<<< HEAD
     public GameData(BoardManager boardManager)
     {
         isWhiteTurn = boardManager.IsWhiteTurn;
-        chessManToSave = boardManager.act;
+   //     chessManToSave = boardManager.act;
 
 
     }
-=======
+
     //    for (int i = 0; i < activeChessMan.Count; i++)
     //    {
     //        ChessMan chessMan = activeChessMan[i];
@@ -43,7 +42,7 @@ public class GameData
 
 
     //}
->>>>>>> 00b57d5cdc45ffee07ad8b6f08d262308b106e61
+
 
 
 
