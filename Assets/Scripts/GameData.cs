@@ -1,36 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.RestService;
-using UnityEngine;
+using System;
 
 
-[System.Serializable]
+[Serializable]
 public class GameData
 {
-
-    public int[,] allPieceData = new int[33, 4];
+    public List<PieceData> chessManToSave = new List<PieceData>();
 
     public bool isWhiteTurn = true;
-  
 
     public GameData(BoardManager boardManager)
     {
         isWhiteTurn = boardManager.IsWhiteTurn;
-        List<ChessMan>chessManToSave = boardManager.ActiveChessMan;
+        List<ChessMan> activeChessMan = boardManager.ActiveChessMan;
         
-        for (int i = 0; i < chessManToSave.Count; i++)
+        foreach (ChessMan chessman in activeChessMan)
         {
-            ChessMan chessMan = chessManToSave[i];
-            allPieceData[i, 0] = (int)chessMan.Name;
-            allPieceData[i, 1] = chessMan.CurrentX;
-            allPieceData[i, 2] = chessMan.CurrentY;
-            int isWhite = 0;
-            if (chessMan.isWhite)
-                isWhite = 1;
-            allPieceData[i, 3] = isWhite;
+            PieceData pieceData = new PieceData(chessman);
+            chessManToSave.Add(pieceData);
         }
     }
-
-
-
 }

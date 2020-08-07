@@ -183,10 +183,28 @@ public class BoardManager : MonoBehaviour
 
     public void LoadGame()
     {
+        activeChessMan.Clear();
         GameData data = SaveSystem.LoadGame();
-        int[,] allPieceData = data.allPieceData;
-        bool isWhiteTurn = data.isWhiteTurn;
-    }
+        bool isItWhiteTurn = data.isWhiteTurn;
+        List<PieceData> saved = data.chessManToSave;
 
+        foreach (PieceData piece in saved)
+        {
+            int name = (int)piece.Name;
+            int xLoc = piece.CurrentX;
+            int yLoc = piece.CurrentY;
+            bool white = piece.IsWhite;
+
+            if (white)
+            {
+                SpawnChessMan(name, xLoc, yLoc, 0);
+            }
+            else
+            {
+                int darkname = (int)piece.Name +7;
+                SpawnChessMan(darkname, xLoc, yLoc, 0);
+            }
+        }
+    }
 
 }

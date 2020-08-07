@@ -7,22 +7,16 @@ using System.Runtime.Serialization;
 
 public static class SaveSystem
 {
-
     public static void SaveBoard (BoardManager boardManager)
     {
 
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/board.gbm";
-
         FileStream stream = new FileStream(path, FileMode.Create);
-
         GameData data = new GameData(boardManager);
-
         formatter.Serialize(stream, data);
         stream.Close();
         Debug.Log("Saved " + data);
-
-
     }
 
     public static GameData LoadGame()
@@ -35,9 +29,8 @@ public static class SaveSystem
 
             GameData data = formatter.Deserialize(stream) as GameData;
             stream.Close();
-            Debug.Log("Found " + data.allPieceData.Length);
+            Debug.Log("Found " + data);
             return data;
-
         }
         else
         {
