@@ -3,47 +3,33 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.RestService;
 using UnityEngine;
 
+
+[System.Serializable]
 public class GameData
 {
 
-    int[,] allPieceData = new int[32, 3];
+    public int[,] allPieceData = new int[33, 4];
 
-    private bool isWhiteTurn = true;
-    List<ChessMan> chessManToSave;
-    private void GetData()
-    {
-    }
-
+    public bool isWhiteTurn = true;
+  
 
     public GameData(BoardManager boardManager)
     {
         isWhiteTurn = boardManager.IsWhiteTurn;
-       // chessManToSave = boardManager.act;
-
-
+        List<ChessMan>chessManToSave = boardManager.ActiveChessMan;
+        
+        for (int i = 0; i < chessManToSave.Count; i++)
+        {
+            ChessMan chessMan = chessManToSave[i];
+            allPieceData[i, 0] = (int)chessMan.Name;
+            allPieceData[i, 1] = chessMan.CurrentX;
+            allPieceData[i, 2] = chessMan.CurrentY;
+            int isWhite = 0;
+            if (chessMan.isWhite)
+                isWhite = 1;
+            allPieceData[i, 3] = isWhite;
+        }
     }
-
-   //for (int i = 0; i < activeChessMan.Count; i++)
-   //     {
-   //        ChessMan chessMan = activeChessMan[i];
-   //        allPieceData[i , 0] = (int)chessMan.Name;
-   //        allPieceData[i, 1] = chessMan.CurrentX;
-   //        allPieceData[i, 2] = chessMan.CurrentY;
-   //        int isWhite = 0;
-   //         if (chessMan.isWhite)
-   //             isWhite = 1;
-   //         allPieceData[i, 3] = isWhite;
-   //     }
-   // }
-
-   // public GameData(BoardManager boardManager)
-   // {
-   //     isWhiteTurn = boardManager.IsWhiteTurn;
-   //     chessManToSave = boardManager.ActiveChessMan;
-
-
-   // }
-
 
 
 

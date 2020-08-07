@@ -6,6 +6,7 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
 
+
     public static BoardManager Instance { get; set; }
     private ChessMan.MoveType[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
@@ -25,9 +26,9 @@ public class BoardManager : MonoBehaviour
     public bool IsWhiteTurn { get { return isWhiteTurn; } }
     public bool selectionChanged = false;
 
-    public List<GameObject> chessmanPrefabs;
-    private List<GameObject> activeChessMan;
-    public List<GameObject> ActiveChessMan { get { return activeChessMan; }}
+    public List<ChessMan> chessmanPrefabs;
+    private List<ChessMan> activeChessMan;
+    public List<ChessMan> ActiveChessMan { get { return activeChessMan; } }
     public Board currentBoard;
 
     private void Start()
@@ -79,7 +80,7 @@ public class BoardManager : MonoBehaviour
             //Capture a peice
             if (c != null && c.isWhite != isWhiteTurn)
             {
-                activeChessMan.Remove(c.gameObject);
+                activeChessMan.Remove(c);
                 Destroy(c.gameObject);
                 //if it is the king
                 if (c.GetType() == typeof(King))
@@ -104,7 +105,7 @@ public class BoardManager : MonoBehaviour
     private void SpawnChessMan(int index, int x, int y, float z)
     {
 
-        GameObject go = Instantiate(chessmanPrefabs[index], GetTileCenter(x, y, z), orientation) as GameObject;
+        ChessMan go = Instantiate(chessmanPrefabs[index], GetTileCenter(x, y, z), orientation) as ChessMan;
         go.transform.SetParent(transform);
         Chessmans[x, y] = go.GetComponent<ChessMan>();
         Chessmans[x, y].SetPosition(x, y);
@@ -114,7 +115,7 @@ public class BoardManager : MonoBehaviour
 
     private void SpawnAllChessMan()
     {
-        activeChessMan = new List<GameObject>();
+        activeChessMan = new List<ChessMan>();
         Chessmans = new ChessMan[8, 8];
 
         //Spawn White Team
@@ -168,5 +169,24 @@ public class BoardManager : MonoBehaviour
         origin.y += z;
         return origin;
     }
+
+
+    public void SaveGame()
+    {
+        if (this != null)
+        {
+            SaveSystem.SaveBoard(this);
+        }
+
+
+    }
+
+    public void LoadGame()
+    {
+        GameData data = SaveSystem.LoadGame();
+        int[,] allPieceData = data.allPieceData;
+        bool isWhiteTurn = data.isWhiteTurn;
+    }
+
 
 }

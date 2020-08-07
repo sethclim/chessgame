@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Pieces\Pawn.cs" />
     <Compile Include="Assets\Scripts\Pieces\Queen.cs" />
     <Compile Include="Assets\Scripts\Pieces\Rook.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
