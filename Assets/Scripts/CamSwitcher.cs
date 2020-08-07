@@ -5,28 +5,35 @@ using UnityEngine;
 public class CamSwitcher : MonoBehaviour
 {
     public static CamSwitcher Instance { set; get; }
-    public Camera[] cameraList = new Camera[2];
-   
+    public Camera CamOnePrefab;
+    public Camera CamTwoPrefab;
+
+    private Camera camOne;
+    private Camera camTwo;
+
+
     public void SetCameras()
     {
+        camOne = Instantiate(CamOnePrefab) as Camera;
+        camTwo = Instantiate(CamTwoPrefab) as Camera;
 
-        cameraList[0].gameObject.SetActive(true);
-        cameraList[1].gameObject.SetActive(false);
+        camOne.enabled = true;
+        camTwo.enabled = false;
     }
 
     public void SwitchCam(bool isWhiteTurn)
     {
-        
+
         if (isWhiteTurn)
         {
-            cameraList[0].gameObject.SetActive(true);
-            cameraList[1].gameObject.SetActive(false);
+            camOne.enabled = true;
+            camTwo.enabled = false;
         }
         else
         {
-            cameraList[0].gameObject.SetActive(false);
-            cameraList[1].gameObject.SetActive(true);
-            
+            camOne.enabled = false;
+            camTwo.enabled = true;
+
         }
     }
 }

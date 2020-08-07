@@ -11,8 +11,8 @@ public class BoardManager : MonoBehaviour
     private ChessMan.MoveType[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
     private ChessMan selectedChessMan;
-    [SerializeField]
-    private CamSwitcher camSwitcherObj;
+   
+    public CamSwitcher camSwitcherObj;
     private const float tile_Size = 1.0f;
     private const float tile_OffSet = 0.5f;
 
@@ -34,6 +34,7 @@ public class BoardManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        camSwitcherObj = Instantiate(camSwitcherObj) as CamSwitcher;
         camSwitcherObj.SetCameras();
         SpawnAllChessMan();
     }
