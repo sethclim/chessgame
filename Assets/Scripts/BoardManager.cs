@@ -11,7 +11,7 @@ public class BoardManager : MonoBehaviour
     private ChessMan.MoveType[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
     private ChessMan selectedChessMan;
-   
+
     public CamSwitcher camSwitcherObj;
     private const float tile_Size = 1.0f;
     private const float tile_OffSet = 0.5f;
@@ -184,6 +184,10 @@ public class BoardManager : MonoBehaviour
 
     public void LoadGame()
     {
+        foreach(ChessMan c in activeChessMan)
+        {
+            Destroy(c.gameObject);
+        }
         activeChessMan.Clear();
         GameData data = SaveSystem.LoadGame();
         bool isItWhiteTurn = data.isWhiteTurn;
@@ -194,16 +198,17 @@ public class BoardManager : MonoBehaviour
             int name = (int)piece.Name;
             int xLoc = piece.CurrentX;
             int yLoc = piece.CurrentY;
+            float zLoc = piece.CurrentZ;
             bool white = piece.IsWhite;
 
             if (white)
             {
-                SpawnChessMan(name, xLoc, yLoc, 0);
+                SpawnChessMan(name, xLoc, yLoc, zLoc);
             }
             else
             {
-                int darkname = (int)piece.Name +7;
-                SpawnChessMan(darkname, xLoc, yLoc, 0);
+                int darkname = (int)piece.Name + 6;
+                SpawnChessMan(darkname, xLoc, yLoc, zLoc);
             }
         }
     }

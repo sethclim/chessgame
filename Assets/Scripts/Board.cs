@@ -42,21 +42,46 @@ public class Board : MonoBehaviour
     }
     private void UpdateLocation()
     {
-        if (!Camera.main)
+        if (Camera.allCameras == null)
             return;
 
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("ChessPlane")))
+        foreach (Camera camera in Camera.allCameras)
         {
-            LocationX = (int)hit.point.x;
-            LocationY = (int)hit.point.z;
+            if (BoardManager.Instance.IsWhiteTurn && camera.name == "PlayerOneCamera")
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("ChessPlane")))
+                {
+                    LocationX = (int)hit.point.x;
+                    LocationY = (int)hit.point.z;
 
+                }
+                else
+                {
+                    LocationX = -1;
+                    LocationY = -1;
+                }
+            }
+            if (!BoardManager.Instance.IsWhiteTurn && camera.name == "PlayerTwoCamera")
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("ChessPlane")))
+                {
+                    LocationX = (int)hit.point.x;
+                    LocationY = (int)hit.point.z;
+
+                }
+                else
+                {
+                    LocationX = -1;
+                    LocationY = -1;
+                }
+
+            }
         }
-        else
-        {
-            LocationX = -1;
-            LocationY = -1;
-        }
+
+
+
     }
 
     private void DrawChessBoard()
