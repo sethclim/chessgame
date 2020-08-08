@@ -8,7 +8,7 @@ public class Bishop : ChessMan
 
     public Bishop() : base()
     {
-        CurrentZ = 0.42f;                                                                        // might have to change later.
+        CurrentZ = 0.42f;   // might have to change later.
         Name = PieceType.bishop;
     }
 

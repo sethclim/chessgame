@@ -6,12 +6,13 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
 
+
     public static BoardManager Instance { get; set; }
     private ChessMan.MoveType[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
     private ChessMan selectedChessMan;
-    [SerializeField]
-    private CamSwitcher camSwitcherObj;
+   
+    public CamSwitcher camSwitcherObj;
     private const float tile_Size = 1.0f;
     private const float tile_OffSet = 0.5f;
 
@@ -25,14 +26,15 @@ public class BoardManager : MonoBehaviour
     public bool IsWhiteTurn { get { return isWhiteTurn; } }
     public bool selectionChanged = false;
 
-    public List<GameObject> chessmanPrefabs;
-    private List<GameObject> activeChessMan;
-    public List<GameObject> ActiveChessMan { get { return activeChessMan; }}
+    public List<ChessMan> chessmanPrefabs;
+    private List<ChessMan> activeChessMan;
+    public List<ChessMan> ActiveChessMan { get { return activeChessMan; } }
     public Board currentBoard;
 
     private void Start()
     {
         Instance = this;
+        camSwitcherObj = Instantiate(camSwitcherObj) as CamSwitcher;
         camSwitcherObj.SetCameras();
         SpawnAllChessMan();
     }
@@ -79,7 +81,7 @@ public class BoardManager : MonoBehaviour
             //Capture a peice
             if (c != null && c.isWhite != isWhiteTurn)
             {
-                activeChessMan.Remove(c.gameObject);
+                activeChessMan.Remove(c);
                 Destroy(c.gameObject);
                 //if it is the king
                 if (c.GetType() == typeof(King))
@@ -104,7 +106,7 @@ public class BoardManager : MonoBehaviour
     private void SpawnChessMan(int index, int x, int y, float z)
     {
 
-        GameObject go = Instantiate(chessmanPrefabs[index], GetTileCenter(x, y, z), orientation) as GameObject;
+        ChessMan go = Instantiate(chessmanPrefabs[index], GetTileCenter(x, y, z), orientation) as ChessMan;
         go.transform.SetParent(transform);
         Chessmans[x, y] = go.GetComponent<ChessMan>();
         Chessmans[x, y].SetPosition(x, y);
@@ -114,7 +116,7 @@ public class BoardManager : MonoBehaviour
 
     private void SpawnAllChessMan()
     {
-        activeChessMan = new List<GameObject>();
+        activeChessMan = new List<ChessMan>();
         Chessmans = new ChessMan[8, 8];
 
         //Spawn White Team
@@ -167,6 +169,43 @@ public class BoardManager : MonoBehaviour
         origin.z += (tile_Size * y) + tile_OffSet;
         origin.y += z;
         return origin;
+    }
+
+
+    public void SaveGame()
+    {
+        if (this != null)
+        {
+            SaveSystem.SaveBoard(this);
+        }
+
+
+    }
+
+    public void LoadGame()
+    {
+        activeChessMan.Clear();
+        GameData data = SaveSystem.LoadGame();
+        bool isItWhiteTurn = data.isWhiteTurn;
+        List<PieceData> saved = data.chessManToSave;
+
+        foreach (PieceData piece in saved)
+        {
+            int name = (int)piece.Name;
+            int xLoc = piece.CurrentX;
+            int yLoc = piece.CurrentY;
+            bool white = piece.IsWhite;
+
+            if (white)
+            {
+                SpawnChessMan(name, xLoc, yLoc, 0);
+            }
+            else
+            {
+                int darkname = (int)piece.Name +7;
+                SpawnChessMan(darkname, xLoc, yLoc, 0);
+            }
+        }
     }
 
 }
