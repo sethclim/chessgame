@@ -182,14 +182,13 @@ public class BoardManager : MonoBehaviour
 
     }
 
-    public void LoadGame()
+    public void LoadGame(GameData data)
     {
         foreach(ChessMan c in activeChessMan)
         {
             Destroy(c.gameObject);
         }
         activeChessMan.Clear();
-        GameData data = SaveSystem.LoadGame();
         bool isItWhiteTurn = data.isWhiteTurn;
         List<PieceData> saved = data.chessManToSave;
 

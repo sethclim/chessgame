@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\DataAccess\PieceData.cs" />
     <Compile Include="Assets\Scripts\DataAccess\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\GameMenu.cs" />
+    <Compile Include="Assets\Scripts\LoadMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Pieces\Bishop.cs" />
     <Compile Include="Assets\Scripts\Pieces\ChessMan.cs" />
