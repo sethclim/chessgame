@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ChessMan : MonoBehaviour
 {
     public enum MoveType {noMove, canMove, attack}
-    public enum PieceType { pawn, queen, king, bishop, rook, knight }
+    public enum PieceType { king, queen, bishop, rook, knight, pawn }
     public PieceType Name { get; set; }
     public int CurrentX { get; set; }
     public int CurrentY { get; set; }
