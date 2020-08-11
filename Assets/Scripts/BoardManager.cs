@@ -31,9 +31,13 @@ public class BoardManager : MonoBehaviour
     public List<ChessMan> ActiveChessMan { get { return activeChessMan; } }
     public Board currentBoard;
 
+    public Notifications notifications;
+    
+
     private void Start()
     {
         Instance = this;
+        notifications = Instantiate(notifications) as Notifications;
         camSwitcherObj = Instantiate(camSwitcherObj) as CamSwitcher;
         camSwitcherObj.SetCameras();
         SpawnAllChessMan();
@@ -177,7 +181,8 @@ public class BoardManager : MonoBehaviour
         if (this != null)
         {
             SaveSystem.SaveBoard(this);
-        }
+            notifications.pushSavedGame();
+}
 
 
     }
@@ -210,6 +215,7 @@ public class BoardManager : MonoBehaviour
                 SpawnChessMan(darkname, xLoc, yLoc, zLoc);
             }
         }
+        camSwitcherObj.SwitchCam(!isItWhiteTurn);
     }
 
 }

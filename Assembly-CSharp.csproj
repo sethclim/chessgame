@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\GameMenu.cs" />
     <Compile Include="Assets\Scripts\LoadMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Notifications.cs" />
     <Compile Include="Assets\Scripts\Pieces\Bishop.cs" />
     <Compile Include="Assets\Scripts\Pieces\ChessMan.cs" />
     <Compile Include="Assets\Scripts\Pieces\Horse.cs" />
