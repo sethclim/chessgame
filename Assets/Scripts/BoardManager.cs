@@ -21,6 +21,7 @@ public class BoardManager : MonoBehaviour
 
     private Quaternion orientation = Quaternion.Euler(-90, -90, 0);
 
+
     private bool isWhiteTurn = true;
 
     public bool IsWhiteTurn { get { return isWhiteTurn; } }
@@ -121,15 +122,15 @@ public class BoardManager : MonoBehaviour
 
         //Spawn White Team
         //King
-        SpawnChessMan(0, 3, 0, 0.42f);
+        SpawnChessMan(0, 4, 0, 0.42f);
         //Queen
-        SpawnChessMan(1, 4, 0, 0.42f);
+        SpawnChessMan(1, 3, 0, 0.42f);
         //Rooks
-        SpawnChessMan(2, 0, 0, 0.42f);
-        SpawnChessMan(2, 7, 0, 0.32f);
+        SpawnChessMan(3, 0, 0, 0.42f);
+        SpawnChessMan(3, 7, 0, 0.32f);
         //Bishops
-        SpawnChessMan(3, 2, 0, 0.42f);
-        SpawnChessMan(3, 5, 0, 0.42f);
+        SpawnChessMan(2, 2, 0, 0.42f);
+        SpawnChessMan(2, 5, 0, 0.42f);
         //Knights
         SpawnChessMan(4, 1, 0, 0.1f);
         SpawnChessMan(4, 6, 0, 0.1f);
@@ -146,11 +147,11 @@ public class BoardManager : MonoBehaviour
         //Queen
         SpawnChessMan(7, 3, 7, 0.42f);
         //Rooks
-        SpawnChessMan(8, 0, 7, 0.42f);
-        SpawnChessMan(8, 7, 7, 0.42f);
+        SpawnChessMan(9, 0, 7, 0.42f);
+        SpawnChessMan(9, 7, 7, 0.42f);
         //Bishops
-        SpawnChessMan(9, 2, 7, 0.42f);
-        SpawnChessMan(9, 5, 7, 0.42f);
+        SpawnChessMan(8, 2, 7, 0.42f);
+        SpawnChessMan(8, 5, 7, 0.42f);
         //Knights
         SpawnChessMan(10, 1, 7, 0.1f);
         SpawnChessMan(10, 6, 7, 0.1f);

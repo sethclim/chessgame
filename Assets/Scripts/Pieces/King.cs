@@ -22,8 +22,8 @@ public class King : ChessMan
 
         // Right
         i = CurrentX;
-
         i++;
+
         if (i < 8) 
         {
             c = BoardManager.Instance.Chessmans[i, CurrentY];
