@@ -9,7 +9,7 @@ public class BoardManager : MonoBehaviour
 
 
     public static BoardManager Instance { get; set; }
- 
+
     private ChessMan.MoveType[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
     private ChessMan selectedChessMan;
@@ -25,6 +25,8 @@ public class BoardManager : MonoBehaviour
 
 
     private bool isWhiteTurn = true;
+
+    public int[] EnPassant { get; set; }
 
     public bool IsWhiteTurn { get { return isWhiteTurn; } }
     public bool selectionChanged = false;
@@ -99,6 +101,38 @@ public class BoardManager : MonoBehaviour
 
             }
 
+            if (x == EnPassant[0] && y == EnPassant[1])
+            {
+                if (isWhiteTurn)
+                {
+                    c = Chessmans[x, y-1];
+                    activeChessMan.Remove(c);
+                    Destroy(c.gameObject);
+                }
+                else
+                {
+                    c = Chessmans[x, y + 1];
+                    activeChessMan.Remove(c);
+                    Destroy(c.gameObject);
+                }
+            }
+            EnPassant [0] = -1;
+            EnPassant [1] = -1;
+            if (selectedChessMan.GetType() == typeof(Pawn))
+            {
+                if(selectedChessMan.CurrentY == 1 && y == 3)
+                {
+                    EnPassant[0] = x;
+                    EnPassant[1] = y - 1;
+                }
+
+                else if (selectedChessMan.CurrentY == 6 && y == 4)
+                {
+                    EnPassant[0] = x;
+                    EnPassant[1] = y + 1;
+                }
+            }
+
 
             Chessmans[selectedChessMan.CurrentX, selectedChessMan.CurrentY] = null;
             selectedChessMan.transform.position = GetTileCenter(x, y, selectedChessMan.CurrentZ);
@@ -126,6 +160,7 @@ public class BoardManager : MonoBehaviour
     {
         activeChessMan = new List<ChessMan>();
         Chessmans = new ChessMan[8, 8];
+        EnPassant = new int[2] {-1,-1};
 
         //Spawn White Team
         //King

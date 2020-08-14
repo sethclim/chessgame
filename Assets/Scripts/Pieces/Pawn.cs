@@ -17,6 +17,7 @@ public class Pawn : ChessMan
     {
         MoveType[,] r = new MoveType[8, 8];
         ChessMan c, c2;
+        int[] e = BoardManager.Instance.EnPassant;
 
         //White team move
         if (isWhite)
@@ -24,6 +25,11 @@ public class Pawn : ChessMan
             //Diagonal Left
             if(CurrentX != 0 && CurrentY != 7)
             {
+                if (e [0] == CurrentX - 1 && e [1] == CurrentY + 1)
+                {
+                    r[CurrentX - 1, CurrentY + 1] = MoveType.attack;
+                }
+
                 c = BoardManager.Instance.Chessmans[CurrentX - 1, CurrentY + 1];
                 if (c != null && !c.isWhite)
                     r[CurrentX - 1, CurrentY + 1] = MoveType.attack;
@@ -31,6 +37,11 @@ public class Pawn : ChessMan
             //Diagonal Right
             if (CurrentX != 7 && CurrentY != 7)
             {
+                if (e[0] == CurrentX + 1 && e[1] == CurrentY + 1)
+                {
+                    r[CurrentX + 1, CurrentY + 1] = MoveType.attack;
+                }
+
                 c = BoardManager.Instance.Chessmans[CurrentX + 1, CurrentY + 1];
                 if (c != null && !c.isWhite)
                     r[CurrentX + 1, CurrentY + 1] = MoveType.attack;
@@ -57,6 +68,11 @@ public class Pawn : ChessMan
             //Diagonal Left
             if (CurrentX != 0 && CurrentY != 0)
             {
+                if (e[0] == CurrentX - 1 && e[1] == CurrentY - 1)
+                {
+                    r[CurrentX - 1, CurrentY - 1] = MoveType.attack;
+                }
+
                 c = BoardManager.Instance.Chessmans[CurrentX - 1, CurrentY - 1];
                 if (c != null && c.isWhite)
                     r[CurrentX - 1, CurrentY - 1] = MoveType.attack;
@@ -64,6 +80,11 @@ public class Pawn : ChessMan
             //Diagonal Right
             if (CurrentX != 7 && CurrentY != 0)
             {
+                if (e[0] == CurrentX + 1 && e[1] == CurrentY - 1)
+                {
+                    r[CurrentX + 1, CurrentY - 1] = MoveType.attack;
+                }
+
                 c = BoardManager.Instance.Chessmans[CurrentX + 1, CurrentY - 1];
                 if (c != null && c.isWhite)
                     r[CurrentX + 1, CurrentY - 1] = MoveType.attack;
