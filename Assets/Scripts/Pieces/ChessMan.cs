@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ChessMan : MonoBehaviour
 {
-    public enum MoveType {noMove, canMove, attack}
+    public enum MoveType { noMove, canMove, attack }
     public enum PieceType { king, queen, bishop, rook, knight, pawn }
     public PieceType Name { get; set; }
     public int CurrentX { get; set; }
@@ -21,8 +21,17 @@ public abstract class ChessMan : MonoBehaviour
 
     public virtual MoveType[,] PossibleMove()
     {
-        return new MoveType[8,8];
+        return new MoveType[8, 8];
     }
 
-   
+    public virtual bool[,] getAttackSquare()
+    {
+        return new bool[8, 8];
+    }
+
+    public virtual void SetAttacks(List<ChessMan> refAChessMen)
+    {
+
+    }
 }
+  

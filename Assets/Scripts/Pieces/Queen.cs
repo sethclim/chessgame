@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class Queen : ChessMan
 {
 
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
-    
+
+    private bool[,] attackSquare = new bool[8, 8];
 
     public Queen() : base()
     {
         CurrentZ = 0.42f;
         Name = PieceType.queen;
+
     }
     public override MoveType[,] PossibleMove()
     {
@@ -29,7 +32,7 @@ public class Queen : ChessMan
             {
                 break;
             }
-               
+
 
             c = BoardManager.Instance.Chessmans[i, CurrentY];
             if (c == null)
@@ -43,13 +46,22 @@ public class Queen : ChessMan
                 if (c.isWhite != isWhite)
                 {
                     r[i, CurrentY] = MoveType.attack;
+
+                    if (c.Name == PieceType.king)
+                    {
+                        for (int locx = CurrentX; locx < i; locx++)
+                        {
+                            attackSquare[locx, CurrentY] = true;
+                        }
+
+                    }
                     break;
                 }
                 else
                 {
                     break;
                 }
-                    
+
             }
         }
 
@@ -68,7 +80,7 @@ public class Queen : ChessMan
             if (c == null)
             {
                 r[i, CurrentY] = MoveType.canMove;
-               
+
 
             }
             else
@@ -76,6 +88,15 @@ public class Queen : ChessMan
                 if (c.isWhite != isWhite)
                 {
                     r[i, CurrentY] = MoveType.attack;
+
+                    if (c.Name == PieceType.king)
+                    {
+                        for (int locx = CurrentX; locx < i; locx--)
+                        {
+                            attackSquare[locx, CurrentY] = true;
+                        }
+
+                    }
                     break;
                 }
                 else
@@ -97,7 +118,7 @@ public class Queen : ChessMan
             {
                 break;
             }
-              
+
 
             c = BoardManager.Instance.Chessmans[CurrentX, j];
             if (c == null)
@@ -111,6 +132,15 @@ public class Queen : ChessMan
                 if (c.isWhite != isWhite)
                 {
                     r[CurrentX, j] = MoveType.attack;
+
+                    if (c.Name == PieceType.king)
+                    {
+                        for (int locy = CurrentY; locy < j; locy++)
+                        {
+                            attackSquare[CurrentX, locy] = true;
+                        }
+
+                    }
                     break;
                 }
                 else
@@ -145,6 +175,16 @@ public class Queen : ChessMan
                 if (c.isWhite != isWhite)
                 {
                     r[CurrentX, j] = MoveType.attack;
+
+                    if (c.Name == PieceType.king)
+                    {
+                        for (int locy = CurrentY; locy < j; locy--)
+                        {
+                            attackSquare[CurrentX, locy] = true;
+                        }
+
+                    }
+
                     break;
                 }
                 else
@@ -162,7 +202,7 @@ public class Queen : ChessMan
         {
             i++;
             j++;
-            if (i >= 8||j >= 8)
+            if (i >= 8 || j >= 8)
             {
                 break;
             }
@@ -172,7 +212,7 @@ public class Queen : ChessMan
             if (c == null)
             {
                 r[i, j] = MoveType.canMove;
-          
+
 
             }
             else
@@ -180,6 +220,21 @@ public class Queen : ChessMan
                 if (c.isWhite != isWhite)
                 {
                     r[i, j] = MoveType.attack;
+
+                    if (c.Name == PieceType.king)
+                    {
+                        for (int locx = CurrentX; locx < i; locx++)
+                        {
+                            for (int locy = CurrentY; locy < j; locy++)
+                            {
+                                attackSquare[locx, locy] = true;
+                            }
+
+                        }
+
+                    }
+
+
                     break;
                 }
                 else
@@ -207,13 +262,26 @@ public class Queen : ChessMan
             if (c == null)
             {
                 r[i, j] = MoveType.canMove;
-                            
+
             }
             else
             {
                 if (c.isWhite != isWhite)
                 {
                     r[i, j] = MoveType.attack;
+
+                    if (c.Name == PieceType.king)
+                    {
+                        for (int locx = CurrentX; locx < i; locx--)
+                        {
+                            for (int locy = CurrentY; locy < j; locy++)
+                            {
+                                attackSquare[locx, locy] = true;
+                            }
+
+                        }
+
+                    }
                     break;
                 }
                 else
@@ -242,7 +310,7 @@ public class Queen : ChessMan
             if (c == null)
             {
                 r[i, j] = MoveType.canMove;
-               
+
 
             }
             else
@@ -250,6 +318,20 @@ public class Queen : ChessMan
                 if (c.isWhite != isWhite)
                 {
                     r[i, j] = MoveType.attack;
+
+                    if (c.Name == PieceType.king)
+                    {
+                        for (int locx = CurrentX; locx < i; locx++)
+                        {
+                            for (int locy = CurrentY; locy < j; locy--)
+                            {
+                                attackSquare[locx, locy] = true;
+                            }
+
+                        }
+
+                    }
+
                     break;
                 }
                 else
@@ -277,13 +359,26 @@ public class Queen : ChessMan
             if (c == null)
             {
                 r[i, j] = MoveType.canMove;
-        
+
             }
             else
             {
                 if (c.isWhite != isWhite)
                 {
                     r[i, j] = MoveType.attack;
+
+                    if (c.Name == PieceType.king)
+                    {
+                        for (int locx = CurrentX; locx < i; locx--)
+                        {
+                            for (int locy = CurrentY; locy > j; locy--)
+                            {
+                                attackSquare[locx, locy] = true;
+                            }
+
+                        }
+
+                    }
                     break;
                 }
                 else
@@ -297,4 +392,13 @@ public class Queen : ChessMan
 
         return r;
     }
+<<<<<<< HEAD
+=======
+
+    public override bool[,] getAttackSquare()
+    {
+        return attackSquare;
+    }
+
+>>>>>>> SC_ChessBranch
 }

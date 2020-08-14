@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-
-
     public static BoardManager Instance { get; set; }
 
     private ChessMan.MoveType[,] allowedMoves { set; get; }
@@ -92,8 +90,12 @@ public class BoardManager : MonoBehaviour
                 //if it is the king
                 if (c.GetType() == typeof(King))
                 {
+
                     EndGame();
                     return;
+
+                    c.SetAttacks(ActiveChessMan);
+
                 }
                 //Capture a piece
                 activeChessMan.Remove(c);
@@ -137,6 +139,8 @@ public class BoardManager : MonoBehaviour
             Chessmans[selectedChessMan.CurrentX, selectedChessMan.CurrentY] = null;
             selectedChessMan.transform.position = GetTileCenter(x, y, selectedChessMan.CurrentZ);
             selectedChessMan.SetPosition(x, y);
+            //re call possible moves for the new location
+            selectedChessMan.PossibleMove();
             Chessmans[x, y] = selectedChessMan;
             isWhiteTurn = !isWhiteTurn;
             camSwitcherObj.SwitchCam(isWhiteTurn);
