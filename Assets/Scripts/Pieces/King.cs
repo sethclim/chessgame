@@ -1,21 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class King : ChessMan
 {
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
 
+    private bool[,] attackSquare = new bool[8, 8];
+
+
+    public static King Instance { get; set; }
+
     public King() : base()
     {
         CurrentZ = 0.42f;
         Name = PieceType.king;
+        
     }
+
+  
 
     public override MoveType[,] PossibleMove()
     {
         MoveType[,] r = new MoveType[8, 8];
         ChessMan c;
+
+        //getAttackSquares();
 
         int i, j;
 
@@ -23,11 +34,11 @@ public class King : ChessMan
         i = CurrentX;
         i++;
 
-        if (i < 8) 
+        if (i < 8)
         {
             c = BoardManager.Instance.Chessmans[i, CurrentY];
 
-            if (c == null) 
+            if (c == null)
             {
                 r[i, CurrentY] = MoveType.canMove;
             }
@@ -178,4 +189,27 @@ public class King : ChessMan
         return r;
 
     }
+
+
+    public override void SetAttacks(List<ChessMan> refAChessMen)
+    {
+        foreach (ChessMan man in refAChessMen)
+        {
+            bool[,] squares = man.getAttackSquare();
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (squares[i, j] == true)
+                    {
+                        attackSquare[i, j] = true;
+                    }
+
+                }
+            }
+        }
+    }
+
+
 }
