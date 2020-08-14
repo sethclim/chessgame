@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour
@@ -84,17 +85,18 @@ public class BoardManager : MonoBehaviour
         {
             ChessMan c = Chessmans[x, y];
 
-            //Capture a peice
             if (c != null && c.isWhite != isWhiteTurn)
             {
-                activeChessMan.Remove(c);
-                Destroy(c.gameObject);
                 //if it is the king
                 if (c.GetType() == typeof(King))
                 {
-                    //End Game
+                    EndGame();
                     return;
                 }
+                //Capture a piece
+                activeChessMan.Remove(c);
+                Destroy(c.gameObject);
+
             }
 
 
@@ -218,6 +220,25 @@ public class BoardManager : MonoBehaviour
             }
         }
         camSwitcherObj.SwitchCam(!isItWhiteTurn);
+    }
+
+    private void EndGame() 
+    {
+        if (IsWhiteTurn)
+        {
+            Debug.Log("White wins the match!");
+        }
+        else 
+        {
+            Debug.Log("Black wins the match!");
+        }
+        foreach (gameObject go in activeChessMan) 
+        { Destroy(go); }
+
+        isWhiteTurn = true;
+        BoardHighlights.Instance.Hidehighlights();
+        SpawnAllChessMan();
+
     }
 
 }
