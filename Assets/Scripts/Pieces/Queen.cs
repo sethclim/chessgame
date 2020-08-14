@@ -392,13 +392,10 @@ public class Queen : ChessMan
 
         return r;
     }
-<<<<<<< HEAD
-=======
 
     public override bool[,] getAttackSquare()
     {
         return attackSquare;
     }
 
->>>>>>> SC_ChessBranch
 }
