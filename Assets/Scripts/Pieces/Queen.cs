@@ -297,6 +297,4 @@ public class Queen : ChessMan
 
         return r;
     }
-
-    someRigidbody = GetComponent<BoardManager>();
 }

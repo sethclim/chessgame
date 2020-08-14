@@ -134,7 +134,7 @@ public class BoardManager : MonoBehaviour
         SpawnChessMan(1, 3, 0, 0.42f);
         //Rooks
         SpawnChessMan(3, 0, 0, 0.42f);
-        SpawnChessMan(3, 7, 0, 0.32f);
+        SpawnChessMan(3, 7, 0, 0.42f);
         //Bishops
         SpawnChessMan(2, 2, 0, 0.42f);
         SpawnChessMan(2, 5, 0, 0.42f);
@@ -226,17 +226,20 @@ public class BoardManager : MonoBehaviour
     {
         if (IsWhiteTurn)
         {
-            Debug.Log("White wins the match!");
+            UnityEngine.Debug.Log("White wins the match!");
         }
         else 
         {
-            Debug.Log("Black wins the match!");
+            UnityEngine.Debug.Log("Black wins the match!");
         }
-        foreach (gameObject go in activeChessMan) 
-        { Destroy(go); }
+
+        foreach (ChessMan c in activeChessMan)
+        {
+            Destroy(c.gameObject);
+        }
 
         isWhiteTurn = true;
-        BoardHighlights.Instance.Hidehighlights();
+        BoardHighlights.Instance.HidehighLights();
         SpawnAllChessMan();
 
     }
