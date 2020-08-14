@@ -10,6 +10,7 @@ public class Pawn : ChessMan
     public Pawn():base()
     {
         CurrentZ = 0.3f;
+        Name = PieceType.pawn;
     }
 
     public override MoveType [,] PossibleMove()

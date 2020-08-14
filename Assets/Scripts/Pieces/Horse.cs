@@ -9,6 +9,7 @@ public class Horse : ChessMan
     public Horse() : base()
     {
         CurrentZ = 0.1f;
+        Name = PieceType.knight;
     }
 
     public override MoveType[,] PossibleMove()

@@ -8,10 +8,11 @@ public class BoardManager : MonoBehaviour
 
 
     public static BoardManager Instance { get; set; }
+ 
     private ChessMan.MoveType[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
     private ChessMan selectedChessMan;
-   
+
     public CamSwitcher camSwitcherObj;
     private const float tile_Size = 1.0f;
     private const float tile_OffSet = 0.5f;
@@ -32,9 +33,13 @@ public class BoardManager : MonoBehaviour
     public List<ChessMan> ActiveChessMan { get { return activeChessMan; } }
     public Board currentBoard;
 
+    public Notifications notifications;
+    
+
     private void Start()
     {
         Instance = this;
+        notifications = Instantiate(notifications) as Notifications;
         camSwitcherObj = Instantiate(camSwitcherObj) as CamSwitcher;
         camSwitcherObj.SetCameras();
         SpawnAllChessMan();
@@ -178,15 +183,19 @@ public class BoardManager : MonoBehaviour
         if (this != null)
         {
             SaveSystem.SaveBoard(this);
-        }
+            notifications.pushSavedGame();
+}
 
 
     }
 
-    public void LoadGame()
+    public void LoadGame(GameData data)
     {
+        foreach(ChessMan c in activeChessMan)
+        {
+            Destroy(c.gameObject);
+        }
         activeChessMan.Clear();
-        GameData data = SaveSystem.LoadGame();
         bool isItWhiteTurn = data.isWhiteTurn;
         List<PieceData> saved = data.chessManToSave;
 
@@ -195,18 +204,20 @@ public class BoardManager : MonoBehaviour
             int name = (int)piece.Name;
             int xLoc = piece.CurrentX;
             int yLoc = piece.CurrentY;
+            float zLoc = piece.CurrentZ;
             bool white = piece.IsWhite;
 
             if (white)
             {
-                SpawnChessMan(name, xLoc, yLoc, 0);
+                SpawnChessMan(name, xLoc, yLoc, zLoc);
             }
             else
             {
-                int darkname = (int)piece.Name +7;
-                SpawnChessMan(darkname, xLoc, yLoc, 0);
+                int darkname = (int)piece.Name + 6;
+                SpawnChessMan(darkname, xLoc, yLoc, zLoc);
             }
         }
+        camSwitcherObj.SwitchCam(!isItWhiteTurn);
     }
 
 }

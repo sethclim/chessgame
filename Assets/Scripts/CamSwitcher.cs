@@ -33,7 +33,7 @@ public class CamSwitcher : MonoBehaviour
         {
             camOne.enabled = false;
             camTwo.enabled = true;
-
         }
+      
     }
 }
