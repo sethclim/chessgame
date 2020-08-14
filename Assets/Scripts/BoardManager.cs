@@ -8,6 +8,7 @@ public class BoardManager : MonoBehaviour
 
 
     public static BoardManager Instance { get; set; }
+ 
     private ChessMan.MoveType[,] allowedMoves { set; get; }
     public ChessMan[,] Chessmans { set; get; }
     private ChessMan selectedChessMan;

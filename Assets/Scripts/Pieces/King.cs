@@ -6,7 +6,6 @@ public class King : ChessMan
 {
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
 
-
     public King() : base()
     {
         CurrentZ = 0.42f;
