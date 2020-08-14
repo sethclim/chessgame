@@ -122,7 +122,21 @@ public class BoardManager : MonoBehaviour
             EnPassant [1] = -1;
             if (selectedChessMan.GetType() == typeof(Pawn))
             {
-                if(selectedChessMan.CurrentY == 1 && y == 3)
+                //Pawn Promotion--> only Queen.
+                if (y == 7)
+                {
+                    activeChessMan.Remove(c);
+                    Destroy(c.gameObject);
+                    SpawnChessMan(1, x, y, 0.42f);
+                }
+                else if (y == 0)
+                {
+                    activeChessMan.Remove(c);
+                    Destroy(c.gameObject);
+                    SpawnChessMan(7, x, y, 0.42f);
+                }
+
+                if (selectedChessMan.CurrentY == 1 && y == 3)
                 {
                     EnPassant[0] = x;
                     EnPassant[1] = y - 1;
