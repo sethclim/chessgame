@@ -292,6 +292,7 @@ public class BoardManager : MonoBehaviour
         }
 
         isWhiteTurn = true;
+        camSwitcherObj.SetCameras();
         BoardHighlights.Instance.HidehighLights();
         SpawnAllChessMan();
 
