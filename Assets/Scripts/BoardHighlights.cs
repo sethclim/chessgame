@@ -9,20 +9,23 @@ public class BoardHighlights : MonoBehaviour
     public GameObject highlightPrefab;
     public GameObject attackhighlightPrefab;
     private List<GameObject> highlights;
+    private List<GameObject> attackHighlights;
+
 
 
     private void Start()
     {
         Instance = this;
         highlights = new List<GameObject>();
+        attackHighlights = new List<GameObject>();
     }
 
     private GameObject GetHighlightObject()
     {
 
-        GameObject go = highlights.Find (g => !g.activeSelf);
-        
-        if(go == null)
+        GameObject go = highlights.Find(g => !g.activeSelf);
+
+        if (go == null)
         {
             go = Instantiate(highlightPrefab);
             highlights.Add(go);
@@ -33,32 +36,30 @@ public class BoardHighlights : MonoBehaviour
     private GameObject GetAttackHighlightObject()
     {
 
-        GameObject go = highlights.Find(g => !g.activeSelf);
+        GameObject go = attackHighlights.Find(g => !g.activeSelf);
 
         if (go == null)
         {
             go = Instantiate(attackhighlightPrefab);
-            highlights.Add(go);
+            attackHighlights.Add(go);
         }
         return go;
     }
 
     public void HighLightAllowedMoves(ChessMan.MoveType[,] moves)
     {
-        for(int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
             {
-                if(moves[i, j] == ChessMan.MoveType.canMove)
+                if (moves[i, j] == ChessMan.MoveType.canMove)
                 {
                     GameObject go = GetHighlightObject();
                     go.SetActive(true);
                     go.transform.position = new Vector3(i + 0.5f, 0f, j + 0.5f);
                 }
-            }
 
-            for (int j = 0; j < 8; j++)
-            {
+
                 if (moves[i, j] == ChessMan.MoveType.attack)
                 {
                     GameObject go = GetAttackHighlightObject();
@@ -72,6 +73,11 @@ public class BoardHighlights : MonoBehaviour
     public void HidehighLights()
     {
         foreach (GameObject go in highlights)
+        {
+            go.SetActive(false);
+        }
+
+        foreach (GameObject go in attackHighlights)
         {
             go.SetActive(false);
         }
