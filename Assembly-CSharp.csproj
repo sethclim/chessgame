@@ -71,9 +71,9 @@
     <Compile Include="Assets\Scripts\DataAccess\PieceData.cs" />
     <Compile Include="Assets\Scripts\DataAccess\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\GameMenu.cs" />
+    <Compile Include="Assets\Scripts\GameTextScript.cs" />
     <Compile Include="Assets\Scripts\LoadMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\Notifications.cs" />
     <Compile Include="Assets\Scripts\Pieces\Bishop.cs" />
     <Compile Include="Assets\Scripts\Pieces\ChessMan.cs" />
     <Compile Include="Assets\Scripts\Pieces\Horse.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Pieces\Pawn.cs" />
     <Compile Include="Assets\Scripts\Pieces\Queen.cs" />
     <Compile Include="Assets\Scripts\Pieces\Rook.cs" />
+    <Compile Include="Assets\Scripts\UpDateGameText.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

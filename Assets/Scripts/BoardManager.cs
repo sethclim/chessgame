@@ -30,13 +30,10 @@ public class BoardManager : MonoBehaviour
     public List<ChessMan> ActiveChessMan { get; private set; }
     public Board currentBoard;
 
-    public Notifications notifications;
-
-
     private void Start()
     {
         Instance = this;
-        notifications = Instantiate(notifications) as Notifications;
+        //notifications = Instantiate(notifications) as Notifications;
         camSwitcherObj = Instantiate(camSwitcherObj) as CamSwitcher;
         camSwitcherObj.SetCameras();
         SpawnAllChessMan();
@@ -222,7 +219,7 @@ public class BoardManager : MonoBehaviour
         if (this != null)
         {
             SaveSystem.SaveBoard(this);
-            notifications.pushSavedGame();
+            UpDateGameText.OnSaveGame();
         }
 
 
@@ -263,10 +260,12 @@ public class BoardManager : MonoBehaviour
     {
         if (IsWhiteTurn)
         {
+            UpDateGameText.OnWhiteWins();
             UnityEngine.Debug.Log("White wins the match!");
         }
         else
         {
+            UpDateGameText.OnBlackWins();
             UnityEngine.Debug.Log("Black wins the match!");
         }
 
