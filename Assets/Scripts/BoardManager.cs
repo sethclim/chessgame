@@ -83,14 +83,10 @@ public class BoardManager : MonoBehaviour
                 //if it is the king
                 if (c.GetType() == typeof(King))
                 {
-
-
-
                     c.SetAttacks(ActiveChessMan);
 
                     EndGame();
                     return;
-
                 }
                 //Capture a piece
                 ActiveChessMan.Remove(c);
@@ -121,13 +117,13 @@ public class BoardManager : MonoBehaviour
                 //Pawn Promotion--> only Queen.
                 if (y == 7)
                 {
-                    activeChessMan.Remove(c);
+                    ActiveChessMan.Remove(c);
                     Destroy(c.gameObject);
                     SpawnChessMan(1, x, y, 0.42f);
                 }
                 else if (y == 0)
                 {
-                    activeChessMan.Remove(c);
+                    ActiveChessMan.Remove(c);
                     Destroy(c.gameObject);
                     SpawnChessMan(7, x, y, 0.42f);
                 }
@@ -291,7 +287,7 @@ public class BoardManager : MonoBehaviour
         }
 
 
-        isWhiteTurn = true;
+        IsWhiteTurn = true;
         camSwitcherObj.SetCameras();
 
         BoardHighlights.Instance.HidehighLights();
