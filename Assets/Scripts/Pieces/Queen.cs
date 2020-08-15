@@ -397,5 +397,8 @@ public class Queen : ChessMan
     {
         return attackSquare;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> SC_ChessBranch
 }

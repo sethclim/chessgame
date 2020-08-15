@@ -19,28 +19,21 @@ public class BoardManager : MonoBehaviour
     public int SelectionX { get; set; } = -1;
     public int SelectionY { get; set; } = -1;
 
-    private Quaternion orientation = Quaternion.Euler(-90, -90, 0);
-
-
-    private bool isWhiteTurn = true;
+    private readonly Quaternion orientation = Quaternion.Euler(-90, -90, 0);
 
     public int[] EnPassant { get; set; }
 
-    public bool IsWhiteTurn { get { return isWhiteTurn; } }
+    public bool IsWhiteTurn { get; private set; } = true;
     public bool selectionChanged = false;
 
     public List<ChessMan> chessmanPrefabs;
-    private List<ChessMan> activeChessMan;
-    public List<ChessMan> ActiveChessMan { get { return activeChessMan; } }
+    public List<ChessMan> ActiveChessMan { get; private set; }
     public Board currentBoard;
-
-    public Notifications notifications;
-    
 
     private void Start()
     {
         Instance = this;
-        notifications = Instantiate(notifications) as Notifications;
+        //notifications = Instantiate(notifications) as Notifications;
         camSwitcherObj = Instantiate(camSwitcherObj) as CamSwitcher;
         camSwitcherObj.SetCameras();
         SpawnAllChessMan();
@@ -71,7 +64,7 @@ public class BoardManager : MonoBehaviour
             return;
         }
 
-        if (Chessmans[x, y].isWhite != isWhiteTurn)
+        if (Chessmans[x, y].isWhite != IsWhiteTurn)
             return;
 
         allowedMoves = Chessmans[x, y].PossibleMove();
@@ -85,43 +78,46 @@ public class BoardManager : MonoBehaviour
         {
             ChessMan c = Chessmans[x, y];
 
-            if (c != null && c.isWhite != isWhiteTurn)
+            if (c != null && c.isWhite != IsWhiteTurn)
             {
                 //if it is the king
                 if (c.GetType() == typeof(King))
                 {
 
-                    EndGame();
-                    return;
+
 
                     c.SetAttacks(ActiveChessMan);
 
+                    EndGame();
+                    return;
+
                 }
                 //Capture a piece
-                activeChessMan.Remove(c);
+                ActiveChessMan.Remove(c);
                 Destroy(c.gameObject);
 
             }
 
             if (x == EnPassant[0] && y == EnPassant[1])
             {
-                if (isWhiteTurn)
+                if (IsWhiteTurn)
                 {
-                    c = Chessmans[x, y-1];
-                    activeChessMan.Remove(c);
+                    c = Chessmans[x, y - 1];
+                    ActiveChessMan.Remove(c);
                     Destroy(c.gameObject);
                 }
                 else
                 {
                     c = Chessmans[x, y + 1];
-                    activeChessMan.Remove(c);
+                    ActiveChessMan.Remove(c);
                     Destroy(c.gameObject);
                 }
             }
-            EnPassant [0] = -1;
-            EnPassant [1] = -1;
+            EnPassant[0] = -1;
+            EnPassant[1] = -1;
             if (selectedChessMan.GetType() == typeof(Pawn))
             {
+
                 //Pawn Promotion--> only Queen.
                 if (y == 7)
                 {
@@ -135,6 +131,7 @@ public class BoardManager : MonoBehaviour
                     Destroy(c.gameObject);
                     SpawnChessMan(7, x, y, 0.42f);
                 }
+
 
                 if (selectedChessMan.CurrentY == 1 && y == 3)
                 {
@@ -156,8 +153,8 @@ public class BoardManager : MonoBehaviour
             //re call possible moves for the new location
             selectedChessMan.PossibleMove();
             Chessmans[x, y] = selectedChessMan;
-            isWhiteTurn = !isWhiteTurn;
-            camSwitcherObj.SwitchCam(isWhiteTurn);
+            IsWhiteTurn = !IsWhiteTurn;
+            camSwitcherObj.SwitchCam(IsWhiteTurn);
         }
 
         BoardHighlights.Instance.HidehighLights();
@@ -170,15 +167,15 @@ public class BoardManager : MonoBehaviour
         go.transform.SetParent(transform);
         Chessmans[x, y] = go.GetComponent<ChessMan>();
         Chessmans[x, y].SetPosition(x, y);
-        activeChessMan.Add(go);
+        ActiveChessMan.Add(go);
 
     }
 
     private void SpawnAllChessMan()
     {
-        activeChessMan = new List<ChessMan>();
+        ActiveChessMan = new List<ChessMan>();
         Chessmans = new ChessMan[8, 8];
-        EnPassant = new int[2] {-1,-1};
+        EnPassant = new int[2] { -1, -1 };
 
         //Spawn White Team
         //King
@@ -238,19 +235,19 @@ public class BoardManager : MonoBehaviour
         if (this != null)
         {
             SaveSystem.SaveBoard(this);
-            notifications.pushSavedGame();
-}
+            UpDateGameText.OnSaveGame();
+        }
 
 
     }
 
     public void LoadGame(GameData data)
     {
-        foreach(ChessMan c in activeChessMan)
+        foreach (ChessMan c in ActiveChessMan)
         {
             Destroy(c.gameObject);
         }
-        activeChessMan.Clear();
+        ActiveChessMan.Clear();
         bool isItWhiteTurn = data.isWhiteTurn;
         List<PieceData> saved = data.chessManToSave;
 
@@ -275,24 +272,28 @@ public class BoardManager : MonoBehaviour
         camSwitcherObj.SwitchCam(!isItWhiteTurn);
     }
 
-    private void EndGame() 
+    private void EndGame()
     {
         if (IsWhiteTurn)
         {
+            UpDateGameText.OnWhiteWins();
             UnityEngine.Debug.Log("White wins the match!");
         }
-        else 
+        else
         {
+            UpDateGameText.OnBlackWins();
             UnityEngine.Debug.Log("Black wins the match!");
         }
 
-        foreach (ChessMan c in activeChessMan)
+        foreach (ChessMan c in ActiveChessMan)
         {
             Destroy(c.gameObject);
         }
 
+
         isWhiteTurn = true;
         camSwitcherObj.SetCameras();
+
         BoardHighlights.Instance.HidehighLights();
         SpawnAllChessMan();
 
