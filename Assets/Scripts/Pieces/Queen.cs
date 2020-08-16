@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using UnityEngine;
-
+﻿
 public class Queen : ChessMan
 {
     // sets the base's Current Z
