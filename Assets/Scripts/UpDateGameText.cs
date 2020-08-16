@@ -37,6 +37,18 @@ public class UpDateGameText : MonoBehaviour
     }
 
     /// <summary>
+    /// Method called when loading the game fails 
+    /// </summary>
+    public static void OnLoadFailed()
+    {
+        //Setting Message to the relevent Text script
+        GameTextScript.message = "Game Load Failed";
+        //Updating the time to disapear
+        timeWhenDisappear = Time.time + timeToAppear;
+    }
+
+
+    /// <summary>
     /// Called when white wins
     /// </summary>
     public static void OnWhiteWins()
