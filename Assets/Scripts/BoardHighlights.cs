@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class BoardHighlights : MonoBehaviour
 {
+    // instance of the highlight class
     public static BoardHighlights Instance { set; get; }
-
+    // public prefab references
     public GameObject highlightPrefab;
     public GameObject attackhighlightPrefab;
+    // list of highlights and attack highlights
     private List<GameObject> highlights;
     private List<GameObject> attackHighlights;
 
 
-
+    // creates new lists on start
     private void Start()
     {
         Instance = this;
@@ -20,6 +22,7 @@ public class BoardHighlights : MonoBehaviour
         attackHighlights = new List<GameObject>();
     }
 
+    //gets highlights/ creates or gets active
     private GameObject GetHighlightObject()
     {
 
@@ -32,7 +35,7 @@ public class BoardHighlights : MonoBehaviour
         }
         return go;
     }
-
+    //gets attack highlights/ creates or gets active
     private GameObject GetAttackHighlightObject()
     {
 
@@ -46,8 +49,11 @@ public class BoardHighlights : MonoBehaviour
         return go;
     }
 
+    //Gets Highlights for the possible moves in the list
     public void HighLightAllowedMoves(ChessMan.MoveType[,] moves)
     {
+        // iterates through the moves. if can move gets highlight 
+        // if can attack sets attack highlight
         for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
@@ -70,6 +76,7 @@ public class BoardHighlights : MonoBehaviour
         }
     }
 
+    // method to hide the highlights in both lists
     public void HidehighLights()
     {
         foreach (GameObject go in highlights)

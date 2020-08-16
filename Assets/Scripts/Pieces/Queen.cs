@@ -1,55 +1,73 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using UnityEngine;
-
+﻿
 public class Queen : ChessMan
 {
-
+    // sets the base's Current Z
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
 
     private bool[,] attackSquare = new bool[8, 8];
-
+    /// <summary>
+    /// Constructor for the queen class.
+    /// Sets the height and the name of the Queen
+    /// </summary>
     public Queen() : base()
     {
         CurrentZ = 0.42f;
         Name = PieceType.queen;
 
     }
+
+    /// <summary>
+    /// Method to get all possible moves for the Queen 
+    /// </summary>
+    /// <returns>MoveType [,] array of all the possible moves of type MoveType</returns>
     public override MoveType[,] PossibleMove()
     {
-        MoveType[,] r = new MoveType[8, 8];
-        ChessMan c;
+        // creates a new rectangular array 8x8 of move type
+        MoveType[,] routes = new MoveType[8, 8];
+        // Holds a ChessMan
+        ChessMan chessman;
 
-        int i, j;
+        // int representing the each step in a direction
+        int iXpos, jYpos;
 
         //right
-        i = CurrentX;
+        // setting i to the Current X pos of the piece 
+        iXpos = CurrentX;
+        // running the loop while true, ends when returned out of
         while (true)
         {
-            i++;
-            if (i >= 8)
+            // incrementing the x pos one each iteration
+            iXpos++;
+            if (iXpos >= 8)
             {
+                // if outta bounds break
                 break;
             }
 
-
-            c = BoardManager.Instance.Chessmans[i, CurrentY];
-            if (c == null)
+            // getting chessman at this position
+            chessman = BoardManager.Instance.Chessmans[iXpos, CurrentY];
+            // checking if the chessman is null
+            if (chessman == null)
             {
-                r[i, CurrentY] = MoveType.canMove;
+                // if it setting can move 
+                routes[iXpos, CurrentY] = MoveType.canMove;
                 continue;
 
             }
+            // else there is a piece 
             else
             {
-                if (c.isWhite != isWhite)
+                // if its on the opposite team 
+                if (chessman.isWhite != isWhite)
                 {
-                    r[i, CurrentY] = MoveType.attack;
+                    // setting can attack
+                    routes[iXpos, CurrentY] = MoveType.attack;
 
-                    if (c.Name == PieceType.king)
+                    // checkling if the attacking peice is the king
+                    if (chessman.Name == PieceType.king)
                     {
-                        for (int locx = CurrentX; locx < i; locx++)
+                        // creating a path of true for all squares between Queen and king
+                        for (int locx = CurrentX; locx < iXpos; locx++)
                         {
                             attackSquare[locx, CurrentY] = true;
                         }
@@ -65,33 +83,35 @@ public class Queen : ChessMan
             }
         }
 
+        // Like wise for the rest of the moves 
+
         //left
-        i = CurrentX;
+        iXpos = CurrentX;
         while (true)
         {
-            i--;
-            if (i < 0)
+            iXpos--;
+            if (iXpos < 0)
             {
                 break;
             }
 
 
-            c = BoardManager.Instance.Chessmans[i, CurrentY];
-            if (c == null)
+            chessman = BoardManager.Instance.Chessmans[iXpos, CurrentY];
+            if (chessman == null)
             {
-                r[i, CurrentY] = MoveType.canMove;
+                routes[iXpos, CurrentY] = MoveType.canMove;
 
 
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (chessman.isWhite != isWhite)
                 {
-                    r[i, CurrentY] = MoveType.attack;
+                    routes[iXpos, CurrentY] = MoveType.attack;
 
-                    if (c.Name == PieceType.king)
+                    if (chessman.Name == PieceType.king)
                     {
-                        for (int locx = CurrentX; locx < i; locx--)
+                        for (int locx = CurrentX; locx < iXpos; locx--)
                         {
                             attackSquare[locx, CurrentY] = true;
                         }
@@ -110,32 +130,32 @@ public class Queen : ChessMan
         }
 
         //up
-        j = CurrentY;
+        jYpos = CurrentY;
         while (true)
         {
-            j++;
-            if (j >= 8)
+            jYpos++;
+            if (jYpos >= 8)
             {
                 break;
             }
 
 
-            c = BoardManager.Instance.Chessmans[CurrentX, j];
-            if (c == null)
+            chessman = BoardManager.Instance.Chessmans[CurrentX, jYpos];
+            if (chessman == null)
             {
-                r[CurrentX, j] = MoveType.canMove;
+                routes[CurrentX, jYpos] = MoveType.canMove;
                 continue;
 
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (chessman.isWhite != isWhite)
                 {
-                    r[CurrentX, j] = MoveType.attack;
+                    routes[CurrentX, jYpos] = MoveType.attack;
 
-                    if (c.Name == PieceType.king)
+                    if (chessman.Name == PieceType.king)
                     {
-                        for (int locy = CurrentY; locy < j; locy++)
+                        for (int locy = CurrentY; locy < jYpos; locy++)
                         {
                             attackSquare[CurrentX, locy] = true;
                         }
@@ -153,32 +173,32 @@ public class Queen : ChessMan
         }
 
         //down
-        j = CurrentY;
+        jYpos = CurrentY;
         while (true)
         {
-            j--;
-            if (j < 0)
+            jYpos--;
+            if (jYpos < 0)
             {
                 break;
             }
 
 
-            c = BoardManager.Instance.Chessmans[CurrentX, j];
-            if (c == null)
+            chessman = BoardManager.Instance.Chessmans[CurrentX, jYpos];
+            if (chessman == null)
             {
-                r[CurrentX, j] = MoveType.canMove;
+                routes[CurrentX, jYpos] = MoveType.canMove;
                 continue;
 
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (chessman.isWhite != isWhite)
                 {
-                    r[CurrentX, j] = MoveType.attack;
+                    routes[CurrentX, jYpos] = MoveType.attack;
 
-                    if (c.Name == PieceType.king)
+                    if (chessman.Name == PieceType.king)
                     {
-                        for (int locy = CurrentY; locy < j; locy--)
+                        for (int locy = CurrentY; locy < jYpos; locy--)
                         {
                             attackSquare[CurrentX, locy] = true;
                         }
@@ -196,36 +216,36 @@ public class Queen : ChessMan
         }
 
         //up-right
-        i = CurrentX;
-        j = CurrentY;
+        iXpos = CurrentX;
+        jYpos = CurrentY;
         while (true)
         {
-            i++;
-            j++;
-            if (i >= 8 || j >= 8)
+            iXpos++;
+            jYpos++;
+            if (iXpos >= 8 || jYpos >= 8)
             {
                 break;
             }
 
 
-            c = BoardManager.Instance.Chessmans[i, j];
-            if (c == null)
+            chessman = BoardManager.Instance.Chessmans[iXpos, jYpos];
+            if (chessman == null)
             {
-                r[i, j] = MoveType.canMove;
+                routes[iXpos, jYpos] = MoveType.canMove;
 
 
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (chessman.isWhite != isWhite)
                 {
-                    r[i, j] = MoveType.attack;
+                    routes[iXpos, jYpos] = MoveType.attack;
 
-                    if (c.Name == PieceType.king)
+                    if (chessman.Name == PieceType.king)
                     {
-                        for (int locx = CurrentX; locx < i; locx++)
+                        for (int locx = CurrentX; locx < iXpos; locx++)
                         {
-                            for (int locy = CurrentY; locy < j; locy++)
+                            for (int locy = CurrentY; locy < jYpos; locy++)
                             {
                                 attackSquare[locx, locy] = true;
                             }
@@ -246,35 +266,35 @@ public class Queen : ChessMan
         }
 
         //up-left
-        i = CurrentX;
-        j = CurrentY;
+        iXpos = CurrentX;
+        jYpos = CurrentY;
         while (true)
         {
-            i--;
-            j++;
-            if (i < 0 || j >= 8)
+            iXpos--;
+            jYpos++;
+            if (iXpos < 0 || jYpos >= 8)
             {
                 break;
             }
 
 
-            c = BoardManager.Instance.Chessmans[i, j];
-            if (c == null)
+            chessman = BoardManager.Instance.Chessmans[iXpos, jYpos];
+            if (chessman == null)
             {
-                r[i, j] = MoveType.canMove;
+                routes[iXpos, jYpos] = MoveType.canMove;
 
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (chessman.isWhite != isWhite)
                 {
-                    r[i, j] = MoveType.attack;
+                    routes[iXpos, jYpos] = MoveType.attack;
 
-                    if (c.Name == PieceType.king)
+                    if (chessman.Name == PieceType.king)
                     {
-                        for (int locx = CurrentX; locx < i; locx--)
+                        for (int locx = CurrentX; locx < iXpos; locx--)
                         {
-                            for (int locy = CurrentY; locy < j; locy++)
+                            for (int locy = CurrentY; locy < jYpos; locy++)
                             {
                                 attackSquare[locx, locy] = true;
                             }
@@ -294,36 +314,36 @@ public class Queen : ChessMan
 
 
         //down-right
-        i = CurrentX;
-        j = CurrentY;
+        iXpos = CurrentX;
+        jYpos = CurrentY;
         while (true)
         {
-            i++;
-            j--;
-            if (i >= 8 || j < 0)
+            iXpos++;
+            jYpos--;
+            if (iXpos >= 8 || jYpos < 0)
             {
                 break;
             }
 
 
-            c = BoardManager.Instance.Chessmans[i, j];
-            if (c == null)
+            chessman = BoardManager.Instance.Chessmans[iXpos, jYpos];
+            if (chessman == null)
             {
-                r[i, j] = MoveType.canMove;
+                routes[iXpos, jYpos] = MoveType.canMove;
 
 
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (chessman.isWhite != isWhite)
                 {
-                    r[i, j] = MoveType.attack;
+                    routes[iXpos, jYpos] = MoveType.attack;
 
-                    if (c.Name == PieceType.king)
+                    if (chessman.Name == PieceType.king)
                     {
-                        for (int locx = CurrentX; locx < i; locx++)
+                        for (int locx = CurrentX; locx < iXpos; locx++)
                         {
-                            for (int locy = CurrentY; locy < j; locy--)
+                            for (int locy = CurrentY; locy < jYpos; locy--)
                             {
                                 attackSquare[locx, locy] = true;
                             }
@@ -343,35 +363,35 @@ public class Queen : ChessMan
         }
 
         //down-left
-        i = CurrentX;
-        j = CurrentY;
+        iXpos = CurrentX;
+        jYpos = CurrentY;
         while (true)
         {
-            i--;
-            j--;
-            if (i < 0 || j < 0)
+            iXpos--;
+            jYpos--;
+            if (iXpos < 0 || jYpos < 0)
             {
                 break;
             }
 
 
-            c = BoardManager.Instance.Chessmans[i, j];
-            if (c == null)
+            chessman = BoardManager.Instance.Chessmans[iXpos, jYpos];
+            if (chessman == null)
             {
-                r[i, j] = MoveType.canMove;
+                routes[iXpos, jYpos] = MoveType.canMove;
 
             }
             else
             {
-                if (c.isWhite != isWhite)
+                if (chessman.isWhite != isWhite)
                 {
-                    r[i, j] = MoveType.attack;
+                    routes[iXpos, jYpos] = MoveType.attack;
 
-                    if (c.Name == PieceType.king)
+                    if (chessman.Name == PieceType.king)
                     {
-                        for (int locx = CurrentX; locx < i; locx--)
+                        for (int locx = CurrentX; locx < iXpos; locx--)
                         {
-                            for (int locy = CurrentY; locy > j; locy--)
+                            for (int locy = CurrentY; locy > jYpos; locy--)
                             {
                                 attackSquare[locx, locy] = true;
                             }
@@ -390,11 +410,13 @@ public class Queen : ChessMan
         }
 
 
-        return r;
+        return routes;
     }
 
     public override bool[,] getAttackSquare()
     {
         return attackSquare;
     }
+
 }
+

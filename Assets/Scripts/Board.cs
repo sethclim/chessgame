@@ -1,15 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class Board : MonoBehaviour
 {
+    // locations for the cursor functionality
     private int LocationX = -1;
     private int LocationY = -1;
 
+    // gets the prefabs
     public GameObject selectionPreFab;
     private GameObject selectTile;
     // Start is called before the first frame update
+    // draws the board and instantiates the prefab
     void Start()
     {
         DrawChessBoard();
@@ -19,16 +21,19 @@ public class Board : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // calls update the location
         UpdateLocation();
 
         ShowCurrentSquare(LocationX, LocationY);
 
+        // gets a mouse down
         if (Input.GetMouseButtonDown(0))
         {
+            // calls get selection
             GetSelection();
         }
     }
-
+    // gets current selection and updates the boardmanagers Selection X,Y
     private void GetSelection()
     {
 
@@ -40,6 +45,8 @@ public class Board : MonoBehaviour
         }
 
     }
+    //Updates the location by reading a Point to ray from a ray cast for eacgh camera
+    // sets the locations to this value
     private void UpdateLocation()
     {
         if (Camera.allCameras == null)
@@ -83,7 +90,7 @@ public class Board : MonoBehaviour
 
 
     }
-
+    // draws a debug chess grid
     private void DrawChessBoard()
     {
         Vector3 widthline = Vector3.right * 8;
@@ -102,6 +109,12 @@ public class Board : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// method to show the current cursor square with a prefab
+    /// </summary>
+    /// <param name="xPos">x pos of the cursor </param>
+    /// <param name="yPos">y pos of the cursor</param>
+
     private void ShowCurrentSquare(int xPos, int yPos)
     {
 
@@ -116,6 +129,7 @@ public class Board : MonoBehaviour
         }
         else
         {
+            // deselect clears the selection when out of range of the board
             selectTile.SetActive(false);
         }
     }
