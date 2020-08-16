@@ -5,21 +5,32 @@ using UnityEngine;
 public class Bishop : ChessMan
 {
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
-
+    /// <summary>
+    /// Constructor for the bishop class]
+    /// sets it height and name
+    /// </summary>
     public Bishop() : base()
     {
         CurrentZ = 0.42f;   // might have to change later.
         Name = PieceType.bishop;
     }
 
+    /// <summary>
+    /// Function for getting all the possible moves of this object
+    /// </summary>
+    /// <returns> A rectangular array of MoveType</returns>
     public override MoveType[,] PossibleMove()
     {
+        // creating a list of MoveType that is 8x8 for the board
         MoveType[,] r = new MoveType[8, 8];
         ChessMan c;
 
         int i, j;
 
-        // Up-Right
+        // Up-Right 
+        //looping in this direction until reaches end of board or finds another piece
+        // if its its teams piece stops
+        // if not attack is set
         i = CurrentX;
         j = CurrentY;
         while (true)
@@ -35,6 +46,7 @@ public class Bishop : ChessMan
             c = BoardManager.Instance.Chessmans[i, j];
             if (c == null)
             {
+                // setting this location to canMove
                 r[i, j] = MoveType.canMove;
             }
 
@@ -42,6 +54,7 @@ public class Bishop : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
+                    // setting this location to attack
                     r[i, j] = MoveType.attack;
                     break;
                 }
@@ -54,6 +67,9 @@ public class Bishop : ChessMan
         }
 
         //Up-Left
+        //looping in this direction until reaches end of board or finds another piece
+        // if its its teams piece stops
+        // if not attack is set
         i = CurrentX;
         j = CurrentY;
         while (true)
@@ -89,6 +105,9 @@ public class Bishop : ChessMan
 
 
         //Down-Right
+        //looping in this direction until reaches end of board or finds another piece
+        // if its its teams piece stops
+        // if not attack is set
         i = CurrentX;
         j = CurrentY;
         while (true)
@@ -124,6 +143,9 @@ public class Bishop : ChessMan
         }
 
         //Down-Left
+        //looping in this direction until reaches end of board or finds another piece
+        // if its its teams piece stops
+        // if not attack is set
         i = CurrentX;
         j = CurrentY;
         while (true)
@@ -157,7 +179,7 @@ public class Bishop : ChessMan
             }
         }
 
-
+        // return the array of MoveType [,]
         return r;
     }
 

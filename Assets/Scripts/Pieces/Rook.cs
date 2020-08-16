@@ -6,15 +6,24 @@ public class Rook : ChessMan
 {
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
 
-
+    /// <summary>
+    /// Rook constructor 
+    /// sets the height and the name of the piece
+    /// </summary>
     public Rook() : base()
     {
-        CurrentZ = 0.42f;                                                                               // Might have to change later
+        CurrentZ = 0.42f;                                                                           
         Name = PieceType.rook;
     }
+    /// <summary>
+    /// Method to get all possible moves for the rook 
+    /// </summary>
+    /// <returns>MoveType [,] array of all the possible moves of type MoveType</returns>
     public override MoveType[,] PossibleMove()
     {
+        // creates a new rectangular array 8x8 of move type
         MoveType[,] r = new MoveType[8, 8];
+        // holds a chess man
         ChessMan c;
 
         int i, j;
@@ -33,6 +42,7 @@ public class Rook : ChessMan
             c = BoardManager.Instance.Chessmans[CurrentX, j];
             if (c == null)
             {
+                // setting th3e position to can move
                 r[CurrentX, j] = MoveType.canMove;
                 continue;
 
@@ -41,6 +51,7 @@ public class Rook : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
+                    // setting th3e position to can attack
                     r[CurrentX, j] = MoveType.attack;
                     break;
                 }
@@ -67,6 +78,7 @@ public class Rook : ChessMan
             c = BoardManager.Instance.Chessmans[CurrentX, j];
             if (c == null)
             {
+                // setting th3e position to can move
                 r[CurrentX, j] = MoveType.canMove;
                 continue;
 
@@ -75,6 +87,7 @@ public class Rook : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
+                    // setting th3e position to can attack
                     r[CurrentX, j] = MoveType.attack;
                     break;
                 }
@@ -100,6 +113,7 @@ public class Rook : ChessMan
             c = BoardManager.Instance.Chessmans[i, CurrentY];
             if (c == null)
             {
+                // setting th3e position to can move
                 r[i, CurrentY] = MoveType.canMove;
                 continue;
 
@@ -108,6 +122,7 @@ public class Rook : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
+                    // setting th3e position to can attack
                     r[i, CurrentY] = MoveType.attack;
                     break;
                 }
@@ -133,6 +148,7 @@ public class Rook : ChessMan
             c = BoardManager.Instance.Chessmans[i, CurrentY];
             if (c == null)
             {
+                // setting th3e position to can move
                 r[i, CurrentY] = MoveType.canMove;
 
 
@@ -141,6 +157,7 @@ public class Rook : ChessMan
             {
                 if (c.isWhite != isWhite)
                 {
+                    // setting th3e position to can attack
                     r[i, CurrentY] = MoveType.attack;
                     break;
                 }
@@ -153,7 +170,7 @@ public class Rook : ChessMan
 
             }
         }
-
+        // returns the array of all the possible moves 
         return r;
     }
 

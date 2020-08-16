@@ -7,11 +7,12 @@ public class King : ChessMan
 {
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
 
-    private bool[,] attackSquare = new bool[8, 8];
+    private readonly bool[,] attackSquare = new bool[8, 8];
 
-
-    public static King Instance { get; set; }
-
+    /// <summary>
+    /// Constructor for king class
+    /// sets the height and name of the piece
+    /// </summary>
     public King() : base()
     {
         CurrentZ = 0.42f;
@@ -19,14 +20,21 @@ public class King : ChessMan
         
     }
 
-  
 
+
+    /// <summary>
+    /// Method to return all the possible moves the the kind can make when called
+    /// Sets its array to either can move or attack
+    /// if not set stays at no move
+    /// </summary>
+    /// <returns>MoveType[,] for all possible moves</returns>
     public override MoveType[,] PossibleMove()
     {
+        // creates a new rectangular array 8x8 of move type
         MoveType[,] r = new MoveType[8, 8];
-        ChessMan c;
 
-        //getAttackSquares();
+        // holds a chessmans
+        ChessMan c;
 
         int i, j;
 
@@ -40,10 +48,12 @@ public class King : ChessMan
 
             if (c == null)
             {
+                // set position to can move
                 r[i, CurrentY] = MoveType.canMove;
             }
             else if (c.isWhite != isWhite)
             {
+                // set position to can attack
                 r[i, CurrentY] = MoveType.attack;
             }
         }
@@ -58,10 +68,12 @@ public class King : ChessMan
 
             if (c == null)
             {
+                // set position to can move
                 r[i, CurrentY] = MoveType.canMove;
             }
             else if (c.isWhite != isWhite)
             {
+                // set position to can attack
                 r[i, CurrentY] = MoveType.attack;
             }
         }
@@ -76,10 +88,12 @@ public class King : ChessMan
 
             if (c == null)
             {
+                // set position to can move
                 r[CurrentX, j] = MoveType.canMove;
             }
             else if (c.isWhite != isWhite)
             {
+                // set position to can attack
                 r[CurrentX, j] = MoveType.attack;
             }
         }
@@ -94,10 +108,12 @@ public class King : ChessMan
 
             if (c == null)
             {
+                // set position to can move
                 r[CurrentX, j] = MoveType.canMove;
             }
             else if (c.isWhite != isWhite)
             {
+                // set position to can attack
                 r[CurrentX, j] = MoveType.attack;
             }
         }
@@ -115,10 +131,12 @@ public class King : ChessMan
 
             if (c == null)
             {
+                // set position to can move
                 r[i, j] = MoveType.canMove;
             }
             else if (c.isWhite != isWhite)
             {
+                // set position to can attack
                 r[i, j] = MoveType.attack;
             }
         }
@@ -136,10 +154,12 @@ public class King : ChessMan
 
             if (c == null)
             {
+                // set position to can move
                 r[i, j] = MoveType.canMove;
             }
             else if (c.isWhite != isWhite)
             {
+                // set position to can attack
                 r[i, j] = MoveType.attack;
             }
         }
@@ -157,10 +177,12 @@ public class King : ChessMan
 
             if (c == null)
             {
+                // set position to can moves
                 r[i, j] = MoveType.canMove;
             }
             else if (c.isWhite != isWhite)
             {
+                // set position to can attack
                 r[i, j] = MoveType.attack;
             }
         }
@@ -178,38 +200,41 @@ public class King : ChessMan
 
             if (c == null)
             {
+                // set position to can move
                 r[i, j] = MoveType.canMove;
             }
             else if (c.isWhite != isWhite)
             {
+                // set position to can attack
                 r[i, j] = MoveType.attack;
             }
         }
 
+        // returns an array of all the possible moves the king can make
         return r;
 
     }
 
 
-    public override void SetAttacks(List<ChessMan> refAChessMen)
-    {
-        foreach (ChessMan man in refAChessMen)
-        {
-            bool[,] squares = man.getAttackSquare();
+    //public override void SetAttacks(List<ChessMan> refAChessMen)
+    //{
+    //    foreach (ChessMan man in refAChessMen)
+    //    {
+    //        bool[,] squares = man.getAttackSquare();
 
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    if (squares[i, j] == true)
-                    {
-                        attackSquare[i, j] = true;
-                    }
+    //        for (int i = 0; i < 8; i++)
+    //        {
+    //            for (int j = 0; j < 8; j++)
+    //            {
+    //                if (squares[i, j] == true)
+    //                {
+    //                    attackSquare[i, j] = true;
+    //                }
 
-                }
-            }
-        }
-    }
+    //            }
+    //        }
+    //    }
+    //}
 
 
 }
