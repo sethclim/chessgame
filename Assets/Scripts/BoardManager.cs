@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -6,43 +7,28 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    //Getter setter to a static instance of the Boardmanager
+ 
     public static BoardManager Instance { get; set; }
-    // Stores allowed Moves
     private ChessMan.MoveType[,] allowedMoves { set; get; }
-    // Array of Chessmes
     public ChessMan[,] Chessmans { set; get; }
-    // Holds the currently selected ChessMan
     private ChessMan selectedChessMan;
-
-    //Holds reference to the camswitcher Object
     public CamSwitcher camSwitcherObj;
 
-    //constants for the tiles
+
     private const float tile_Size = 1.0f;
     private const float tile_OffSet = 0.5f;
 
-    //Getters and Setters the X and Y Selection Updated every time selection changes
     public int SelectionX { get; set; } = -1;
     public int SelectionY { get; set; } = -1;
-
-    // Quaternion to set the orientation of each peice in 3D space
     private readonly Quaternion orientation = Quaternion.Euler(-90, -90, 0);
 
-    // array of int for the EnPassant move the pawn has
     public int[] EnPassant { get; set; }
 
-    // Bool for who's turn it is.  Has a private set, defaulted to white
     public bool IsWhiteTurn { get; private set; } = true;
-    // Stores if the selection has changed
     public bool selectionChanged = false;
 
-    // List of all the ChessMan Prefabs
     public List<ChessMan> chessmanPrefabs;
-    // List of the Active ChessMan has a private set 
     public List<ChessMan> ActiveChessMan { get; private set; }
-
-    // Holds an instance of the board
     public Board currentBoard;
 
     /// <summary>
@@ -184,6 +170,7 @@ public class BoardManager : MonoBehaviour
             //re call possible moves for the new location
             selectedChessMan.PossibleMove();
             Chessmans[x, y] = selectedChessMan;
+            IsCheckMate();
             // switching the turn
             IsWhiteTurn = !IsWhiteTurn;
             // switching the view 
@@ -273,6 +260,28 @@ public class BoardManager : MonoBehaviour
         origin.y += z;
         return origin;
     }
+
+
+    private void IsCheckMate()
+    {
+        bool[,] kingAttackSquare = new bool[8, 8];
+
+        
+        for (int iPiece = 0; iPiece < ActiveChessMan.Count; iPiece++)
+        {
+            ChessMan tempChessMan = ActiveChessMan[iPiece];
+
+            ChessMan.MoveType[,] tempMoves = tempChessMan.PossibleMove();
+
+
+            
+        }
+
+    }
+
+
+
+
 
 
     // method to call save game passes the BoardManager in

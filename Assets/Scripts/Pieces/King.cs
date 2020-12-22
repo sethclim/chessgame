@@ -7,8 +7,6 @@ public class King : ChessMan
 {
     public override float CurrentZ { get => base.CurrentZ; set => base.CurrentZ = value; }
 
-    private readonly bool[,] attackSquare = new bool[8, 8];
-
     /// <summary>
     /// Constructor for king class
     /// sets the height and name of the piece
@@ -214,27 +212,5 @@ public class King : ChessMan
         return r;
 
     }
-
-
-    //public override void SetAttacks(List<ChessMan> refAChessMen)
-    //{
-    //    foreach (ChessMan man in refAChessMen)
-    //    {
-    //        bool[,] squares = man.getAttackSquare();
-
-    //        for (int i = 0; i < 8; i++)
-    //        {
-    //            for (int j = 0; j < 8; j++)
-    //            {
-    //                if (squares[i, j] == true)
-    //                {
-    //                    attackSquare[i, j] = true;
-    //                }
-
-    //            }
-    //        }
-    //    }
-    //}
-
 
 }
