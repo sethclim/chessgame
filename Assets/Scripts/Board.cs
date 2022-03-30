@@ -123,9 +123,6 @@ public class Board : MonoBehaviour
         {
             selectTile.SetActive(true);
             selectTile.transform.position = new Vector3(xPos + 0.5f, 0f, yPos + 0.5f);
-
-            Debug.Log(BoardManager.Instance.SelectionX);
-            Debug.Log(BoardManager.Instance.SelectionY);
         }
         else
         {
